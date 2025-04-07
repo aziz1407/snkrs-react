@@ -1,0 +1,253 @@
+.order-page {
+    width: 100%;
+    height: auto;
+    
+}
+
+.order-page .order-container {
+    width: 1300px;
+    height: auto;
+}
+
+.order-page .order-container .order-main-content {
+    margin-top: -25px;
+    width: 100%;
+    height: 1000px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+   
+}
+
+
+.order-page .order-container .order-main-content .right-card {
+    margin-top: 30px;
+    width: 373px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.order-page .order-container .order-main-content .right-card .right-1 {
+    width: 372px;
+    height: 299px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 16px;
+    background: #F8F8FE;
+    box-shadow: 14px 14px 5px 0px #BBBBBF, 0px 1px 11px 12px #D3D3E7 inset, 0px 4px 16px 0px rgba(242, 189, 87, 0.04) inset;
+}
+
+.order-page .order-container .order-main-content .right-card .right-1 .image-frame {
+    margin-top: 29px;
+    position: absolute;
+    width: 117px;
+    height: 115px;
+    border-radius: 48%;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+/* .order-page .order-container .order-main-content .right-card .right-1 .image-frame .icon-frame {
+    margin-top: 95px;
+    margin-left: 90px;
+    width: 20px;
+    height: 20px;
+    border-radius: 37px;
+} */
+
+.order-page .order-container .order-main-content .right-card .right-1 .image-frame .icon-frame .order-user-img {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.order-page .order-container .order-main-content .right-card .right-1 .image-frame .icon-frame .order-user-avatar {
+    width: 117px;
+ height: 112px;
+ filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+ border-radius: 37px;
+}
+
+.order-page .order-container .order-main-content .right-card .right-1 .image-frame .icon-frame .order-user-icon-box {
+    position: absolute;
+    padding: 5px;
+    width: 30px;
+    height: 30px;
+    top: 81%;
+    right: 0;
+    display: flex;
+    background: rgba(0, 0, 0, 0.33);
+    border-radius: 37px;
+}
+
+.order-page .order-container .order-main-content .right-card .right-1 .name {
+    margin-top: 148px;
+    color: #332c2c;
+    font-family: "Commissioner";
+    font-size: 25px;
+    font-weight: 500;
+    line-height: 35px;
+}
+
+.order-page .order-container .order-main-content .right-card .right-1 .city-desc {
+    margin-top: 10px;
+    width: 300px;
+    height: 22px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+
+
+.order-page .order-container .order-main-content .right-card .right-2 {
+    margin-top: 23px;
+    width: 372px;
+    height: 282px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    border-radius: 16px;
+    background: #F8F8FE;
+    box-shadow: 14px 14px 5px 0px #BBBBBF, 0px 1px 11px 12px #D3D3E7 inset, 0px 4px 16px 0px rgba(242, 189, 87, 0.04) inset;
+}
+
+.right-card .right-2 .second-column {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-top: 10px;
+    width: 340px;
+    height: 40px;
+  
+}
+
+.right-card .right-2 .input-1 {
+    margin-top: 30px;
+    margin-left: 27px;
+    width: 325px;
+    height: 40px;
+    font-family: "Commissioner";
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 36px;
+    border-radius: 5px;
+    border: 1px solid #B4AAAA;
+    background: #F5F5F5;
+}
+
+.right-card .right-2 .second-column .input-2 {
+    margin-left: 27px;
+    width: 152px;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid #B4AAAA;
+    background: #F5F5F5;
+}
+
+.right-card .right-2 .second-column .input-3 {
+    margin-left: 20px;
+    width: 152px;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid #B4AAAA;
+    background: #F5F5F5;
+}
+
+.right-card .right-2 .input-4 {
+    margin-top: 10px;
+    margin-left: 27px;
+    width: 325px;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid #B4AAAA;
+    background: #F5F5F5;
+}
+
+.right-card .right-2 .cards {
+    margin-left: 50px;
+    margin-top: 45px;
+    width: 70%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center; 
+}
+
+/* ORDERS */
+
+.order-page .order-container .order-main-content .order-main-box {
+    margin-top: 30px;
+    width: 770px;
+    height: 244px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 16px;
+    background: #F8F8FE;
+    box-shadow: -12px 12px 4px 0px #BABABF, 0px 4px 10px 9px #D3D3E7 inset, 0px 4px 16px 0px rgba(242, 189, 87, 0.04) inset;
+}
+
+.order-page .order-container .order-main-content .order-main-box .order-box-scroll {
+    height: 150px;
+    padding: 0;
+    overflow-y: auto;
+}
+
+.order-page .order-container .order-main-content .order-main-box .order-box-scroll .orders-name-price {
+    display: flex;
+    align-items: center;
+    padding: 8px 16px;
+    gap: 16px;
+    height: 60px;
+}
+
+.order-main-content .order-main-box .order-box-scroll .orders-name-price .order-dish-img {
+    width: 50px;
+    height: 47px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.order-main-box .order-box-scroll .orders-name-price .title-dish {
+    font-size: 20px;
+}
+
+.order-main-box .order-box-scroll .orders-name-price .price-box {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto;
+}
+
+.order-main-content .order-main-box .total-price-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-top: auto;
+    padding-top: 16px;
+    border-top: 1px solid #eee;
+    height: 48px;
+}
+
+.order-main-content .order-main-box .total-price-box  .box-total {
+    width: 450px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+}
+
+.order-main-content .order-main-box .pay-btn {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.order-main-content .order-main-box .total-price-box .verify-button {
+    background: #3A87CB;
+    color: #FFF;
+}
