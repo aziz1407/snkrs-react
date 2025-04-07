@@ -43,7 +43,7 @@ export default function HomeNavbar(props: HomeNavbarProps) {
         <Stack className="menu">
           <Box>
             <NavLink to="/">
-              <img className="brand-logo" src="/icons/burak.svg" />
+              <img className="brand-logo" />
             </NavLink>
           </Box>
           <Stack className="links">
@@ -89,9 +89,19 @@ export default function HomeNavbar(props: HomeNavbarProps) {
                   variant="contained"
                   className="login-button"
                   onClick={() => setLoginOpen(true)}
+                  sx={{marginRight: "10px"}}
                 >
                   Login
                 </Button>
+                {!authMember ? (
+                <Button
+                  variant={"contained"}
+                  className="signup-button"
+                  onClick={() => setSignupOpen(true)}
+                >
+                  SIGN UP
+                </Button>
+              ) : null}
               </Box>
             ) : (
               <img
@@ -159,15 +169,6 @@ export default function HomeNavbar(props: HomeNavbarProps) {
             <Box className={"welcome-txt"}>The Choice, not just a choice</Box>
             <Box className={"service-txt"}>24 hours service</Box>
             <Box className={"signup"}>
-              {!authMember ? (
-                <Button
-                  variant={"contained"}
-                  className="signup-button"
-                  onClick={() => setSignupOpen(true)}
-                >
-                  SIGN UP
-                </Button>
-              ) : null}
             </Box>
           </Stack>
           <Box className="logo-frame">

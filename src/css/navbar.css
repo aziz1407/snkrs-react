@@ -2,8 +2,9 @@
     width: 100%;
     height: 773px;
     display: flex;
-    background: url("/public/img/banner.webp");
+    background: url("/public/img/idea4.jpg");
     background-size: cover;
+    background-position: center; /* Moves image to the left */
 }
 
 .home-navbar .navbar-container {
@@ -20,8 +21,13 @@
 }
 
 .home-navbar .navbar-container .menu .brand-logo {
-    width: 125px;
+    width: 100px;
     height: 30px;
+    background-image: url("/public/icons/snkrs2.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+
 }
 
 .home-navbar .navbar-container .menu .links {
@@ -75,87 +81,89 @@
 }
 
 .home-navbar .navbar-container .header-frame {
-    margin-top: 142px;
-    height: 462px;
+    margin: 80px auto 0 auto; /* centers horizontally */
+    width: 90%; /* or any value like 1000px for fixed width */
+    max-width: 1200px;
+    height: auto;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: row; /* horizontal layout */
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+    animation: fadeInUp 1.2s ease forwards;
+}
+
+@keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(40px); }
+    100% { opacity: 1; transform: translateY(0); }
 }
 
 .home-navbar .navbar-container .header-frame .detail {
     width: 510px;
     display: flex;
     flex-direction: column;
+    padding: 40px 30px;
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.3);
+    animation: slideFade 1.2s ease-in-out;
+}
+
+@keyframes slideFade {
+    0% { opacity: 0; transform: translateX(-30px); }
+    100% { opacity: 1; transform: translateX(0); }
 }
 
 .home-navbar .navbar-container .header-frame .detail .head-main-txt {
-    width: 450px;
-    height: 150px;
-    font-family: "Roboto Serif";
-    font-size: 50px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-    letter-spacing: -0.75px;
-    color: #f8f8ff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 52px;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -1px;
+    color: #fefefe;
+    margin-bottom: 20px;
+    text-shadow: 1px 2px 8px rgba(0,0,0,0.5);
 }
 
 .home-navbar .navbar-container .header-frame .detail .welcome-txt {
-    width: 510px;
-    height: 42px;
-    font-family: "Roboto Serif";
-    font-size: 36px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    letter-spacing: -0.54px;
-    color: #d7b686;
+    font-family: 'Poppins', sans-serif;
+    font-size: 32px;
+    font-weight: 500;
+    color: #77d1f6;
+    margin-bottom: 16px;
 }
 
 .home-navbar .navbar-container .header-frame .detail .service-txt {
-    margin-top: 23px;
-    width: 153px;
-    height: 23px;
-    font-family: "Roboto Serif";
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-    letter-spacing: -0.3px;
-    color: #D5D5D5
+    font-size: 18px;
+    font-weight: 400;
+    color: #e0e0e0;
+    margin-bottom: 40px;
 }
 
 .home-navbar .navbar-container .detail .signup {
-    margin-top: 73px;
+    display: flex;
+    justify-content: flex-start;
 }
 
-.home-navbar .navbar-container .detail .signup .signup-button{
-    width: 210px;
-    height: 60px;
-    border-radius: 4px;
-    background: #1976d2;
-    text-align: center;
-    font-family: Poppins;
-    font-size: 17px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    color: #f8f8ff;
+.home-navbar .navbar-container .detail .signup .signup-button {
+    width: 230px;
+    height: 65px;
+    border-radius: 12px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #ffffff;
+    box-shadow: 0px 4px 20px rgba(56, 182, 255, 0.6);
+    transition: all 0.3s ease-in-out;
+    border: none;
 }
 
-.home-navbar .navbar-container .logo-frame {
-    margin-top: 43px;
-    width: 690px;
-    height: 419px;
-}
-
-.home-navbar .navbar-container .logo-frame .logo-img{
-    width: 100%;
-    height: 100%;
-    background: url("/public/img/logo.webp");
-    background-repeat: no-repeat;
-    background-size: contain;
-    filter: invert(25%)
+.home-navbar .navbar-container .detail .signup .signup-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 6px 25px rgba(56, 182, 255, 0.9);
+    background: linear-gradient(135deg, #1ea6f7, #56d7ff);
 }
 
 
