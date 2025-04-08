@@ -1,85 +1,78 @@
-import { Box, Stack } from "@mui/material";
-import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { Autoplay, Navigation, Pagination } from "swiper";
-import { plans } from "../../../lib/data/plans";
+import { Box, Button, Typography } from "@mui/material";
+import { motion } from "framer-motion";
 
-SwiperCore.use([Autoplay, Navigation, Pagination]);
+interface EventItem {
+  id: number;
+  title: string;
+  desc: string;
+  img: string;
+}
+
+const eventData: EventItem[] = [
+  {
+    id: 1,
+    title: "Sneaker Drop",
+    desc: "Limited edition release, don't miss out.",
+    img: "/img/idea6.jpg",
+  },
+  {
+    id: 2,
+    title: "Summer Collection",
+    desc: "Bright, bold, and breathable styles.",
+    img: "/img/puma.jpg",
+  },
+  {
+    id: 3,
+    title: "Urban Classics",
+    desc: "Sleek silhouettes for city moves.",
+    img: "/img/for-nike.jpg",
+  },
+  {
+    id: 4,
+    title: "Retro Revival",
+    desc: "Back from the 90s with fresh vibes.",
+    img: "/img/jordan.jpg",
+  },
+  {
+    id: 5,
+    title: "Cool Drop",
+    desc: "Holy-Cow drop",
+    img: "/img/airdrop.jpg",
+  },
+];
+
+// Duplicate data for infinite loop effect
+const loopedData = [...eventData, ...eventData];
 
 export default function Events() {
   return (
-    <div className={"events-frame"}>
-      <Stack className={"events-main"}>
-        <Box className={"events-text"}>
-          <span className={"category-title"}>Events</span>
-        </Box>
-        <Swiper
-          className={"events-info swiper-wrapper"}
-          slidesPerView={"auto"}
-          centeredSlides={true}
-          spaceBetween={30}
-          navigation={{
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-          }}
-          pagination={{
-            el: ".swiper-pagination",
-            clickable: true,
-          }}
-          autoplay={{
-            delay: 2000,
-            disableOnInteraction: true,
-          }}
-        >
+    <Box className="events-section">
+      <Typography className="events-title">Explore More Benefits</Typography>
 
-         {plans.map((value, number) => {
-            return (
-              <SwiperSlide key={number} className={"events-info-frame"}>
-                <div className={"events-img"}>
-                  <img src={value.img} className={"events-img"} />
-                </div>
-                <Box className={"events-desc"}>
-                  <Box className={"events-bott"}>
-                    <Box className={"bott-left"}>
-                      <div className={"event-title-speaker"}>
-                        <strong>{value.title}</strong>
-                        <div className={"event-organizator"}>
-                          <img src={"/icons/speaker.svg"} />
-                          <p className={"spec-text-author"}>{value.author}</p>
-                        </div>
-                      </div>
-
-                      <p className={"text-desc"}> {value.desc} </p>
-
-                      <div className={"bott-info"}>
-                        <div className={"bott-info-main"}>
-                          <img src={"/icons/calendar.svg"} />
-                          {value.date}
-                        </div>
-                        <div className={"bott-info-main"}>
-                          <img src={"/icons/location.svg"} />
-                          {value.location}
-                        </div>
-                      </div>
-                    </Box>
-                  </Box>
-                </Box>
-              </SwiperSlide>
-            );
-          })}
-        </Swiper>
-        <Box className={"prev-next-frame"}>
-          <img
-            src={"/icons/arrow-right.svg"}
-            className={"swiper-button-prev"}
-          />
-          <div className={"dot-frame-pagination swiper-pagination"}></div>
-          <img
-            src={"/icons/arrow-right.svg"}
-            className={"swiper-button-next"}
-            style={{ transform: "rotate(-180deg)" }}
-          />
-        </Box>
-        </Stack>
-    </div>
+      <motion.div
+        className="event-cards"
+        animate={{ x: ["0%", "-50%"] }}
+        transition={{
+          repeat: Infinity,
+          duration: 20,
+          ease: "linear",
+        }}
+      >
+        {loopedData.map((event) => (
+          <div className="event-card" key={`${event.id}-${Math.random()}`}>
+            <div
+              className="event-img"
+              style={{
+                backgroundImage: `url(${event.img})`,
+              }}
+            />
+            <div className="event-info">
+              <Typography className="event-name">{event.title}</Typography>
+              <Button className="event-btn">More</Button>
+            </div>
+          </div>
+        ))}
+      </motion.div>
+    </Box>
   );
 }

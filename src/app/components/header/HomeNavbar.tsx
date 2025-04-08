@@ -1,4 +1,12 @@
-import { Box, Button, Container, ListItemIcon, Menu, MenuItem, Stack } from "@mui/material";
+import {
+  Box,
+  Button,
+  Container,
+  ListItemIcon,
+  Menu,
+  MenuItem,
+  Stack,
+} from "@mui/material";
 import { NavLink } from "react-router-dom";
 import Basket from "./Basket";
 import React, { useEffect, useState } from "react";
@@ -6,6 +14,8 @@ import { CartItem } from "../../../lib/data/types/search";
 import { useGlobals } from "../../../app/hooks/useGlobals";
 import { serverApi } from "../../../lib/config";
 import { Logout } from "@mui/icons-material";
+import LoginIcon from "@mui/icons-material/Login";
+import PersonAddIcon from "@mui/icons-material/PersonAdd";
 
 interface HomeNavbarProps {
   cartItems: CartItem[];
@@ -18,7 +28,7 @@ interface HomeNavbarProps {
   handleLogoutClick: (e: React.MouseEvent<HTMLElement>) => void;
   anchorEl: HTMLElement | null;
   handleCloseLogout: () => void;
-  handleLogoutRequest: () => void; 
+  handleLogoutRequest: () => void;
 }
 
 export default function HomeNavbar(props: HomeNavbarProps) {
@@ -54,7 +64,7 @@ export default function HomeNavbar(props: HomeNavbarProps) {
             </Box>
             <Box className="hover-line">
               <NavLink to="/products" activeClassName={"underline"}>
-                Products
+                Kicks
               </NavLink>
             </Box>
             {authMember ? (
@@ -84,24 +94,25 @@ export default function HomeNavbar(props: HomeNavbarProps) {
               onDeleteAll={onDeleteAll}
             />
             {!authMember ? (
-              <Box>
+              <Box sx={{ display: "flex", gap: "12px" }}>
                 <Button
                   variant="contained"
                   className="login-button"
                   onClick={() => setLoginOpen(true)}
-                  sx={{marginRight: "10px"}}
                 >
+                  <LoginIcon sx={{ mr: 1 }} />
                   Login
                 </Button>
-                {!authMember ? (
-                <Button
-                  variant={"contained"}
-                  className="signup-button"
-                  onClick={() => setSignupOpen(true)}
-                >
-                  SIGN UP
-                </Button>
-              ) : null}
+                {!authMember && (
+                  <Button
+                    variant="contained"
+                    className="signup-button"
+                    onClick={() => setSignupOpen(true)}
+                  >
+                    <PersonAddIcon sx={{ mr: 1 }} />
+                    SignUp
+                  </Button>
+                )}
               </Box>
             ) : (
               <img
@@ -158,18 +169,12 @@ export default function HomeNavbar(props: HomeNavbarProps) {
                 Logout
               </MenuItem>
             </Menu>
-            
           </Stack>
         </Stack>
         <Stack className={"header-frame"}>
           <Stack className="detail">
-            <Box className={"head-main-txt"}>
-              World's Most Delicious Cousine
-            </Box>
-            <Box className={"welcome-txt"}>The Choice, not just a choice</Box>
-            <Box className={"service-txt"}>24 hours service</Box>
-            <Box className={"signup"}>
-            </Box>
+            <Box className={"head-main-txt"}>Passion led you here...</Box>
+            <Box className={"welcome-txt"}>Let's find your new pair</Box>
           </Stack>
           <Box className="logo-frame">
             <div className={"logo-img"}></div>
