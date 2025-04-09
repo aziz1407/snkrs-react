@@ -1,14 +1,19 @@
 import React from "react";
 import { Box, Container, Stack } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 const Footers = styled.div`
   width: 100%;
-  height: 590px;
-  display: flex;
-  background: #343434;
-  background-size: cover;
+  background: #1a1a1a;
+  padding: 70px 0 40px 0;
+  background-image: linear-gradient(160deg, #1a1a1a 0%, #2a2a2a 100%);
+  box-shadow: 0px -8px 40px rgba(0, 0, 0, 0.6);
+`;
+
+const SocialIcon = styled.img`
+  width: 24px;
+  height: 24px;
 `;
 
 export default function Footer() {
@@ -16,72 +21,112 @@ export default function Footer() {
 
   return (
     <Footers>
-      <Container>
-        <Stack flexDirection={"row"} sx={{ mt: "94px" }}>
-          <Stack flexDirection={"column"} style={{ width: "340px" }}>
-            <Box>
-              <img width={"100px"} src={"/icons/burak.svg"} />
-            </Box>
-            <Box className={"foot-desc-txt"}>
-              Focusing on the gourmet Turkish breakfast as well as the youth
-              society, CZN Burak Gurme aims to bring Turkish cuisine back. CZN
-              Burak Gurme creates an illusion with its cuisine.
-            </Box>
-            <Box className="sns-context">
-              <img src={"/icons/facebook.svg"} />
-              <img src={"/icons/twitter.svg"} />
-              <img src={"/icons/instagram.svg"} />
-              <img src={"/icons/youtube.svg"} />
-            </Box>
-          </Stack>
-          <Stack sx={{ ml: "288px" }} flexDirection={"row"}>
-            <Stack>
+      <Container maxWidth="lg">
+        <Stack spacing={6}>
+          <Box
+            display="grid"
+            gridTemplateColumns={{ xs: "1fr", md: "2fr 1fr 1fr" }}
+            gap={6}
+          >
+            <Stack spacing={2}>
               <Box>
-                <Box className={"foot-category-title"}>Sections</Box>
-                <Box className={"foot-category-link"}>
-                  <Link to="/">Home</Link>
-                  <Link to="/products">Products</Link>
-                  {authMember && <Link to="/orders">Orders</Link>}
-                  <Link to="/help">Help</Link>
+                <NavLink to="/">
+                  <img className="brand-logo" />
+                </NavLink>
+              </Box>
+              <Box className="foot-desc-txt" style={{ maxWidth: "320px" }}>
+                Focusing on premium sneakers and youth culture, SNKRS aims to
+                bring iconic style back to the streets. SNKRS blends hype and
+                heritage, creating a fresh illusion with every drop.
+              </Box>
+            </Stack>
+
+            <Stack spacing={1}>
+              <Box className="foot-category-title">Sections</Box>
+              <Box className="foot-category-link">
+                <Link to="/">Home</Link>
+                <Link to="/products">Products</Link>
+                {authMember && <Link to="/orders">Orders</Link>}
+                <Link to="/help">Help</Link>
+              </Box>
+            </Stack>
+
+            <Stack spacing={1}>
+              <Box className="foot-category-title">Find us</Box>
+              <Box className="foot-category-link">
+                <Box className="find-us">
+                  <span>L.</span>
+                  <div>Downtown, Andijan</div>
+                </Box>
+                <Box className="find-us">
+                  <span>P.</span>
+                  <div>+998 91 490 77 33</div>
+                </Box>
+                <Box className="find-us">
+                  <span>E.</span>
+                  <div>snkrs@gmail.com</div>
+                </Box>
+                <Box className="find-us">
+                  <span>H.</span>
+                  <div>Visit 24 hours</div>
                 </Box>
               </Box>
             </Stack>
-            <Stack sx={{ ml: "100px" }}>
-              <Box>
-                <Box className={"foot-category-title"}>Find us</Box>
-                <Box
-                  flexDirection={"column"}
-                  sx={{ mt: "20px" }}
-                  className={"foot-category-link"}
-                  justifyContent={"space-between"}
-                >
-                  <Box flexDirection={"row"} className={"find-us"}>
-                    <span>L.</span>
-                    <div>Downtown, Dubai</div>
-                  </Box>
-                  <Box className={"find-us"}>
-                    <span>P.</span>
-                    <div>+971 4 554 7777</div>
-                  </Box>
-                  <Box className={"find-us"}>
-                    <span>E.</span>
-                    <div>devexuz@gmail.com</div>
-                  </Box>
-                  <Box className={"find-us"}>
-                    <span>H.</span>
-                    <div>Visit 24 hours</div>
-                  </Box>
-                </Box>
-              </Box>
-            </Stack>
-          </Stack>
-        </Stack>
-        <Stack
-          style={{ border: "1px solid #C5C8C9", width: "100%", opacity: "0.2" }}
-          sx={{ mt: "80px" }}
-        ></Stack>
-        <Stack className={"copyright-txt"}>
-          © Copyright Devex Global, All rights reserved.
+          </Box>
+
+          <Box
+            display="flex"
+            justifyContent="flex-end"
+            alignItems="center"
+            className="sns-context"
+          >
+            <a
+              href="https://www.facebook.com/sneakershopping/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <SocialIcon src="/icons/facebook.svg" alt="Facebook" />
+            </a>
+            <a
+              href="https://t.me/Abdulaziz_Ibrokhimov"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <SocialIcon src="/icons/finaltg.png" alt="Telegram" />
+            </a>
+            <a
+              href="https://www.instagram.com/abdulaziz__ibrokhimov/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <SocialIcon src="/icons/instagram.svg" alt="Instagram" />
+            </a>
+            <a
+              href="https://www.youtube.com/sneakertalk"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <SocialIcon src="/icons/youtube.svg" alt="YouTube" />
+            </a>
+            <Box className="globe-tag">
+              <img src="/icons/globe.jpg" alt="Globe" width="18" />
+              <span>Uzbekistan</span>
+            </Box>
+          </Box>
+
+          <Box
+            style={{
+              width: "100%",
+              height: "1px",
+              background: "linear-gradient(to right, #444, #666, #444)",
+              opacity: 0.3,
+              marginTop: "40px",
+            }}
+          />
+
+          <Box className="copyright-txt" textAlign="center">
+            © Copyright Aiden Team, All rights reserved.
+          </Box>
         </Stack>
       </Container>
     </Footers>

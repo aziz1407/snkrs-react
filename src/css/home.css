@@ -318,96 +318,42 @@
 /** EVENTS **/
 
 .events-section {
-  padding: 60px 20px;
-  background-color: #e8f4ff; /* soft sky blue background */
-  overflow: hidden;
-}
-
-.events-title {
-  font-size: 36px;
-  font-weight: 700;
-  text-align: center;
-  margin-bottom: 50px;
-  color: #1e2a38;
-  letter-spacing: -0.5px;
-}
-
-.event-cards {
-  display: flex;
-  flex-direction: row;
-  gap: 24px;
-  width: max-content;
-  animation: scroll-left 25s linear infinite;
-}
-
-@keyframes scroll-left {
-  0% {
-    transform: translateX(0);
+    padding: 20px 10px; 
+    background-color: #f3f4f5;
+    overflow: hidden;
   }
-  100% {
-    transform: translateX(-50%);
+  
+  .events-title {
+    font-size: 36px;
+    font-weight: 700;
+    text-align: center;
+    margin: 0 0 20px 0; 
+    color: #1e2a38;
+    letter-spacing: -0.5px;
   }
-}
-
-.event-card {
-  width: 320px;
-  height: 400px;
-  flex-shrink: 0;
-  background-color: white;
-  border-radius: 8px; /* slightly less rounded */
-  overflow: hidden;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-  display: flex;
-  flex-direction: column;
-  transition: transform 0.3s ease;
-}
-
-.event-card:hover {
-  transform: translateY(-6px);
-}
-
-.event-img {
-  height: 80%;
-  background-size: cover;
-  background-position: center;
-}
-
-.event-info {
-  padding: 18px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  flex-grow: 1;
-}
-
-.event-name {
-  font-size: 22px;
-  font-weight: 600;
-  color: #202b3a;
-  margin-bottom: 10px;
-}
-
-.event-desc {
-  font-size: 15px;
-  color: #546e7a;
-  margin-bottom: 20px;
-  line-height: 1.4;
-}
-
-.event-btn {
-  background-color: #3291e9;
-  color: white;
-  text-transform: none;
-  padding: 8px 20px;
-  border-radius: 6px;
-  font-weight: 500;
-  font-size: 14px;
-  transition: background-color 0.3s ease;
-}
-
-.event-btn:hover {
-  background-color: #2b7dce;
-}
+  .event-cards {
+    display: flex;
+    gap: 24px;
+    width: max-content;
+  }
+  
+  .event-img-only {
+    width: 430px;
+    height: 430px;
+    flex-shrink: 0;
+    background-size: cover;
+    background-position: center;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.4s ease, filter 0.4s ease;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  }
+  
+  .event-img-only:hover {
+    transform: scale(1.05);
+    filter: brightness(1.1);
+  }
+  
 
 
 

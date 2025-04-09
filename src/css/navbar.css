@@ -204,10 +204,11 @@
   .other-navbar .navbar-container .menu .brand-logo {
     width: 100px;
     height: 40px;
+    background-image: url("/public/icons/s1.png");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-  }
+}
   
   .other-navbar .navbar-container .menu .links {
     min-width: 700px;

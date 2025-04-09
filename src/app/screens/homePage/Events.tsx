@@ -1,77 +1,56 @@
-import { Box, Button, Typography } from "@mui/material";
-import { motion } from "framer-motion";
+import { Box, Typography } from "@mui/material";
+import { useHistory } from "react-router-dom";
+import { motion, useAnimation } from "framer-motion";
+import { useEffect, useRef } from "react";
 
-interface EventItem {
-  id: number;
-  title: string;
-  desc: string;
-  img: string;
-}
-
-const eventData: EventItem[] = [
-  {
-    id: 1,
-    title: "Sneaker Drop",
-    desc: "Limited edition release, don't miss out.",
-    img: "/img/idea6.jpg",
-  },
-  {
-    id: 2,
-    title: "Summer Collection",
-    desc: "Bright, bold, and breathable styles.",
-    img: "/img/puma.jpg",
-  },
-  {
-    id: 3,
-    title: "Urban Classics",
-    desc: "Sleek silhouettes for city moves.",
-    img: "/img/for-nike.jpg",
-  },
-  {
-    id: 4,
-    title: "Retro Revival",
-    desc: "Back from the 90s with fresh vibes.",
-    img: "/img/jordan.jpg",
-  },
-  {
-    id: 5,
-    title: "Cool Drop",
-    desc: "Holy-Cow drop",
-    img: "/img/airdrop.jpg",
-  },
+const eventData = [
+  { id: 1, img: "/img/event5.png" },
+  { id: 2, img: "/img//event2.png" },
+  { id: 3, img: "/img//event4.png" },
+  { id: 4, img: "/img//event3.png" },
+  { id: 5, img: "/img//event1.png" },
 ];
 
-// Duplicate data for infinite loop effect
-const loopedData = [...eventData, ...eventData];
-
 export default function Events() {
+  const history = useHistory();
+  const controls = useAnimation();
+  const wrapperRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      controls.start({
+        x: "-25%",
+        transition: { duration: 1.5, ease: "easeInOut" },
+      }).then(() => {
+        controls.start({
+          x: "0%",
+          transition: { duration: 1.5, ease: "easeInOut" },
+        });
+      });
+    }, 10000);
+
+    return () => clearInterval(interval);
+  }, [controls]);
+
   return (
     <Box className="events-section">
-      <Typography className="events-title">Explore More Benefits</Typography>
+      <h2 className="events-title">Explore More</h2>
 
-      <motion.div
-        className="event-cards"
-        animate={{ x: ["0%", "-50%"] }}
-        transition={{
-          repeat: Infinity,
-          duration: 20,
-          ease: "linear",
-        }}
-      >
-        {loopedData.map((event) => (
-          <div className="event-card" key={`${event.id}-${Math.random()}`}>
-            <div
-              className="event-img"
-              style={{
-                backgroundImage: `url(${event.img})`,
-              }}
+      <motion.div ref={wrapperRef} className="carousel-outer">
+        <motion.div
+          className="event-cards"
+          animate={controls}
+        >
+          {eventData.map((event, index) => (
+            <motion.div
+              key={`${event.id}-${index}`}
+              className="event-img-only"
+              style={{ backgroundImage: `url(${event.img})` }}
+              onClick={() => history.push("/products")}
+              whileHover={{ scale: 1.05 }}
             />
-            <div className="event-info">
-              <Typography className="event-name">{event.title}</Typography>
-              <Button className="event-btn">More</Button>
-            </div>
-          </div>
-        ))}
+          ))}
+        </motion.div>
       </motion.div>
     </Box>
   );
