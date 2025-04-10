@@ -2,6 +2,11 @@ import React from "react";
 import { Box, Container, Stack } from "@mui/material";
 import { Link, NavLink } from "react-router-dom";
 import styled from "styled-components";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import TelegramIcon from "@mui/icons-material/Telegram";
+import YouTubeIcon from "@mui/icons-material/YouTube";
+import PublicIcon from "@mui/icons-material/Public";
 
 const Footers = styled.div`
   width: 100%;
@@ -79,38 +84,44 @@ export default function Footer() {
             justifyContent="flex-end"
             alignItems="center"
             className="sns-context"
+            gap={2}
           >
             <a
               href="https://www.facebook.com/sneakershopping/"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <SocialIcon src="/icons/facebook.svg" alt="Facebook" />
+              <FacebookIcon style={{ color: "#fff" }} />
             </a>
             <a
               href="https://t.me/Abdulaziz_Ibrokhimov"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <SocialIcon src="/icons/finaltg.png" alt="Telegram" />
+              <TelegramIcon style={{ color: "#fff" }} />
             </a>
             <a
               href="https://www.instagram.com/abdulaziz__ibrokhimov/"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <SocialIcon src="/icons/instagram.svg" alt="Instagram" />
+              <InstagramIcon style={{ color: "#fff" }} />
             </a>
             <a
               href="https://www.youtube.com/sneakertalk"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <SocialIcon src="/icons/youtube.svg" alt="YouTube" />
+              <YouTubeIcon style={{ color: "#fff" }} />
             </a>
-            <Box className="globe-tag">
-              <img src="/icons/globe.jpg" alt="Globe" width="18" />
-              <span>Uzbekistan</span>
+            <Box
+              className="globe-tag"
+              display="flex"
+              alignItems="center"
+              gap={0.5}
+            >
+              <PublicIcon style={{ color: "#fff", fontSize: "18px" }} />
+              <span style={{ color: "#fff" }}>Uzbekistan</span>
             </Box>
           </Box>
 

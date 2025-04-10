@@ -1,26 +1,26 @@
 export const faq = [
 	{
-		question: 'How to make order?',
-		answer: 'You should choose products and make an order via basket!',
+		question: "What sizes are available for sneakers?",
+		answer: "We offer sizes ranging from EU 36 to EU 48, including half sizes for selected models.",
 	},
 	{
-		question: 'How long does delivery takes?',
-		answer: 'It depends on your location. The max delivery time is 1 hour!',
+		question: "Are the sneakers 100% authentic?",
+		answer: "Absolutely. All products sold on our platform are 100% original and verified by experts.",
 	},
 	{
-		question: 'Is our details secure in this platform?',
-		answer: 'Of course, we take full responsibility for your provided user details!',
+		question: "Can I return or exchange my sneakers?",
+    	answer: "Yes, we offer a 14-day return and exchange policy for unused sneakers with original packaging.",
 	},
 	{
-		question: 'I am blocked, what should I do?',
-		answer: 'There is a reason for your block, please contact to us!',
+		question: "How do I track my sneaker order?",
+    	answer: "Once shipped, you will receive a tracking number via email to monitor your delivery in real-time."
 	},
 	{
-		question: 'How can I cancel order?',
-		answer: 'You can cancel your order any time easily, just go to your orders page!',
+		question: "Do you offer limited edition or rare sneakers?",
+    	answer: "Yes, we regularly stock exclusive drops and rare releases. Stay tuned to our updates!",
 	},
 	{
-		question: 'Who developed this platform?',
-		answer: 'ITC Global developers developed this platform!',
+		question: "Do you ship internationally?",
+    	answer: "Currently, we ship only within the country but international shipping is coming soon!",
 	},
 ];

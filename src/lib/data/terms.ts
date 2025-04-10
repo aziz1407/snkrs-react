@@ -1,6 +1,7 @@
 export const terms = [
-	'Making orders from the site is complete, live register to use communications you must pass.',
-	'This is why you cannot cancel your orders once you have paid for them check before making payments.',
-	'It is not possible to write and distribute personal ads without the permission of the admin.',
-	'All your actions are under the control of our restaurant administration, so please follow the general rules.',
-];
+	"All sneaker orders are confirmed once payment is made. Please review your cart carefully before proceeding to checkout.",
+	"Returns are accepted within 14 days of delivery, provided items are unworn and in original packaging.",
+	"Unauthorized resale or advertising of our products is strictly prohibited without prior written consent.",
+	"We reserve the right to monitor and review user activity to maintain a safe and respectful shopping environment."
+  ];
+  
