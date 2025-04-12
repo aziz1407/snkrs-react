@@ -70,19 +70,26 @@ export default function HelpPage() {
                   boxShadow: "inset 0 0 8px rgba(0,0,0,0.05)",
                 }}
               >
-                <Tab label="Terms" value="1" sx={{ fontWeight: 700,  }} />
+                <Tab label="Terms" value="1" sx={{ fontWeight: 700 }} />
                 <Tab label="FAQ" value="2" sx={{ fontWeight: 700 }} />
                 <Tab label="Contact" value="3" sx={{ fontWeight: 700 }} />
               </Tabs>
             </Box>
 
             <TabPanel value="1">
-              <Stack spacing={4} divider={<Divider sx={{ borderColor: "#eee" }} />}>
+              <Stack
+                spacing={4}
+                divider={<Divider sx={{ borderColor: "#eee" }} />}
+              >
                 {terms.map((text, index) => (
                   <Typography
                     key={index}
                     variant="body1"
-                    sx={{ color: "#2e2e2e", fontSize: "1.1rem", lineHeight: 1.9 }}
+                    sx={{
+                      color: "#2e2e2e",
+                      fontSize: "1.1rem",
+                      lineHeight: 1.9,
+                    }}
                   >
                     {text}
                   </Typography>
@@ -107,10 +114,14 @@ export default function HelpPage() {
                       aria-controls={`faq-${index}-content`}
                       id={`faq-${index}-header`}
                     >
-                      <Typography fontWeight={700}>{item.question}</Typography>
+                      <Typography fontWeight={700} sx={{ color: "#000" }}>
+                        {item.question}
+                      </Typography>
                     </AccordionSummary>
                     <AccordionDetails>
-                      <Typography color="text">{item.answer}</Typography>
+                      <Typography sx={{ color: "#000" }}>
+                        {item.answer}
+                      </Typography>
                     </AccordionDetails>
                   </Accordion>
                 ))}
@@ -127,23 +138,23 @@ export default function HelpPage() {
                 >
                   Reach Out To Us 💬
                 </Typography>
-                <Typography variant="body1" gutterBottom sx={{color: "#000"}}>
-                  We’d love to hear from you — whether it's a question, feedback or
-                  just a hello.
+                <Typography variant="body1" color="text" gutterBottom sx={{ color: "#000" }}> 
+                  We'd love to hear from you — whether it's a question, feedback
+                  or just a hello.
                 </Typography>
 
                 <Stack spacing={3} mt={5}>
-                  <TextField 
-                    label="Your Name" 
-                    fullWidth 
+                  <TextField
+                    label="Your Name"
+                    fullWidth
                     variant="outlined"
-                    InputLabelProps={{ style: { color: '#000' } }}
+                    InputLabelProps={{ style: { color: "#000" } }}
                   />
-                  <TextField 
-                    label="Your Email" 
-                    fullWidth 
+                  <TextField
+                    label="Your Email"
+                    fullWidth
                     variant="outlined"
-                    InputLabelProps={{ style: { color: '#000' } }}
+                    InputLabelProps={{ style: { color: "#000" } }}
                   />
                   <TextareaAutosize
                     minRows={6}
@@ -171,7 +182,7 @@ export default function HelpPage() {
                         textTransform: "none",
                         fontWeight: "bold",
                         color: "#ffffff",
-                        '&:hover': {
+                        "&:hover": {
                           backgroundColor: "#1565c0",
                         },
                       }}

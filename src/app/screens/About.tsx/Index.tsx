@@ -1,34 +1,11 @@
-import React from "react";
-import {
-  Box,
-  Container,
-  Stack,
-  Tabs,
-  Tab,
-  Typography,
-  Accordion,
-  AccordionSummary,
-  AccordionDetails,
-  Button,
-  TextField,
-  TextareaAutosize,
-  Paper,
-  Divider,
-} from "@mui/material";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import TabContext from "@mui/lab/TabContext";
-import TabPanel from "@mui/lab/TabPanel";
-import { faq } from "../../../lib/data/faq";
-import { terms } from "../../../lib/data/terms";
+import React, { useState } from "react";
+import { Box, Container, Stack, Paper, Button } from "@mui/material";
 
-export default function AboutPage() {
-  const [value, setValue] = React.useState("1");
-
-  const handleChange = (_event: React.SyntheticEvent, newValue: string) => {
-    setValue(newValue);
-  };
+export default function HelpPage() {
+  const [showMore, setShowMore] = useState(false);
 
   return (
+    <Stack className="frame">
     <Box
       sx={{
         backgroundColor: "#ffffff",
@@ -40,148 +17,79 @@ export default function AboutPage() {
       }}
     >
       <Container maxWidth="md">
-        <Paper className="help-paper"
+        <Paper
           elevation={10}
           sx={{
             borderRadius: 8,
             p: 6,
-          }}
+            boxShadow: "0 30px 60px rgba(68, 58, 58, 0.12)",
+            border: "1px solid #e0e0e0",
+            height: "auto",
+            display: "flex",
+            background: "#c2aa8e",
+            flexDirection: "column",
+            alignItems: "center",
+          }} className="paper"
         >
-          <TabContext value={value}>
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                mb: 6,
-              }}
-            >
-              <Tabs className="tabs"
-                value={value}
-                onChange={handleChange}
-                indicatorColor="primary"
-                textColor="primary"
-                variant="fullWidth"
-                sx={{
-                  background: "#f1f5f9",
-                  borderRadius: 6,
-                }}
-              >
-                <Tab label="Terms" value="1" sx={{ fontWeight: 700,  }} />
-                <Tab label="FAQ" value="2" sx={{ fontWeight: 700 }} />
-                <Tab label="Contact" value="3" sx={{ fontWeight: 700 }} />
-              </Tabs>
-            </Box>
-
-            <TabPanel value="1">
-              <Stack spacing={4} divider={<Divider sx={{ borderColor: "#eee" }} />}>
-                {terms.map((text, index) => (
-                  <Typography
-                    key={index}
-                    variant="body1"
-                    sx={{ color: "#2e2e2e", fontSize: "1.1rem", lineHeight: 1.9 }}
-                  >
-                    {text}
-                  </Typography>
-                ))}
-              </Stack>
-            </TabPanel>
-
-            <TabPanel value="2">
-              <Stack spacing={3}>
-                {faq.map((item, index) => (
-                  <Accordion
-                    key={index}
-                    elevation={2}
-                    sx={{
-                      borderRadius: 4,
-                      background: "#ffffff",
-                      border: "1px solid #e0e0e0",
-                      
-                    }}
-                  >
-                    <AccordionSummary
-                      expandIcon={<ExpandMoreIcon />}
-                      aria-controls={`faq-${index}-content`}
-                      id={`faq-${index}-header`}
-                    >
-                      <Typography fontWeight={700}>{item.question}</Typography>
-                    </AccordionSummary>
-                    <AccordionDetails>
-                      <Typography color="text">{item.answer}</Typography>
-                    </AccordionDetails>
-                  </Accordion>
-                ))}
-              </Stack>
-            </TabPanel>
-
-            <TabPanel value="3">
-              <Box>
-                <Typography
-                  variant="h4"
-                  fontWeight={800}
-                  sx={{ color: "#1e88e5" }}
-                  gutterBottom
+          <Stack className="about-title">
+            <h2 style={{textAlign: "center", marginTop: "0px"}}>Who are we?</h2>
+            <Box className="text">
+              <span>
+                Founded on July 14, 2003, in the heart of Andijan, Uzbekistan,
+                our SNKRS store began as a small local sneaker hub and has since
+                grown into a destination for sneaker enthusiasts across the
+                nation and beyond. Built from passion, style, and a vision to
+                bring the world's best sneakers closer to our community, we've
+                evolved into more than just a store — we're a culture.
+                <br />
+                <br />
+                {showMore && (
+                  <>
+                    From humble beginnings, our goal was clear: deliver
+                    authentic, high-quality sneakers from top global brands and
+                    empower our customers to express their individuality through
+                    footwear. Over the years, we've built strong relationships
+                    with world-class partners, working closely with legendary
+                    brands like Nike, Adidas, New Balance, Puma, and Converse.
+                    These partnerships allow us to offer exclusive drops,
+                    limited editions, and the freshest styles to our loyal
+                    customers.
+                    <br />
+                    <br />
+                    Our store isn't just about sneakers — it's about community,
+                    authenticity, and style. We've served thousands of
+                    sneakerheads across Uzbekistan and gained a reputation for
+                    trust, service, and passion. Our curated selection, expert
+                    guidance, and attention to customer needs make every visit
+                    to our store a unique experience.
+                    <br />
+                    <br />
+                    We've also proudly collaborated with local creatives and
+                    international platforms to promote sneaker culture
+                    throughout Central Asia. With over two decades of
+                    experience, we continue to grow, aiming to become Central
+                    Asia's top sneaker destination.
+                    <br />
+                    <br />
+                    Whether you're a collector, athlete, or trendsetter, welcome
+                    to SNKRS — where passion meets the sole.
+                    <br />
+                    <br />
+                  </>
+                )}
+                <Button
+                  onClick={() => setShowMore(!showMore)}
+                  variant="text"
+                  sx={{ mt: 1, fontWeight: "bold", textTransform: "none", color: "black"}} 
                 >
-                  Reach Out To Us 💬
-                </Typography>
-                <Typography variant="body1" gutterBottom sx={{color: "#000"}}>
-                  We'd love to hear from you — whether it's a question, feedback or
-                  just a hello.
-                </Typography>
-
-                <Stack spacing={3} mt={5}>
-                  <TextField 
-                    label="Your Name" 
-                    fullWidth 
-                    variant="outlined"
-                    InputLabelProps={{ style: { color: '#000' } }}
-                  />
-                  <TextField 
-                    label="Your Email" 
-                    fullWidth 
-                    variant="outlined"
-                    InputLabelProps={{ style: { color: '#000' } }}
-                  />
-                  <TextareaAutosize
-                    minRows={6}
-                    placeholder="Your message..."
-                    style={{
-                      width: "100%",
-                      borderRadius: 16,
-                      padding: 20,
-                      border: "1px solid #ddd",
-                      fontFamily: "inherit",
-                      fontSize: "1rem",
-                      backgroundColor: "#fcfcfc",
-                    }}
-                  />
-                  <Box display="flex" justifyContent="flex-end">
-                    <Button
-                      variant="contained"
-                      size="large"
-                      sx={{
-                        px: 5,
-                        py: 1.5,
-                        borderRadius: 4,
-                        backgroundColor: "#1e88e5",
-                        boxShadow: "0 4px 12px rgba(30, 136, 229, 0.3)",
-                        textTransform: "none",
-                        fontWeight: "bold",
-                        color: "#ffffff",
-                        '&:hover': {
-                          backgroundColor: "#1565c0",
-                        },
-                      }}
-                    >
-                      Send Message
-                    </Button>
-                  </Box>
-                </Stack>
-              </Box>
-            </TabPanel>
-          </TabContext>
+                  {showMore ? "Show Less ▲" : "Read More ▼"}
+                </Button>
+              </span>
+            </Box>
+          </Stack>
         </Paper>
       </Container>
     </Box>
+    </Stack>
   );
 }
