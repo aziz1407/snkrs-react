@@ -14,6 +14,7 @@ import { ProductCollection } from "../../../lib/data/enums/product.enum";
 import "../../../css/home.css";
 import MemberService from "../../../app/services/MemberService";
 import { Member } from "../../../lib/data/types/member";
+import { Box, useTheme } from "@mui/material";
 
 /** REDUX SLICE & SELECTOR **/
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -57,14 +58,22 @@ export default function HomePage() {
       .catch((err) => console.log(err));
   }, []);
 
+  const theme = useTheme()
+
   return (
-    <div className={"homepage"}>
+    <Box
+    sx={{
+      backgroundColor: theme.palette.background.default, 
+      color: theme.palette.text.primary, 
+      padding: 2,
+    }} className={"homepage"}
+  >
       <PopularDishes />
       <Advertisement />
       <NewDishes />
       <Statistics />
       <ActiveUsers />
       <Events />
-    </div>
+    </Box>
   );
 }

@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, useTheme } from "@mui/material";
 import { useHistory } from "react-router-dom";
 import { motion, useAnimation } from "framer-motion";
 import { useEffect, useRef } from "react";
@@ -15,6 +15,8 @@ export default function Events() {
   const history = useHistory();
   const controls = useAnimation();
   const wrapperRef = useRef<HTMLDivElement>(null);
+  const theme = useTheme();
+  
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -33,8 +35,8 @@ export default function Events() {
   }, [controls]);
 
   return (
-    <Box className="events-section">
-      <h2 className="events-title">Explore More</h2>
+    <Box className="events-section" sx={{ backgroundColor: theme.palette.background.default }}>
+      <h2 className="events-title" style={{fontStyle: "Dancing Script"}}>Explore More</h2>
 
       <motion.div ref={wrapperRef} className="carousel-outer">
         <motion.div

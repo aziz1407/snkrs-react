@@ -18,6 +18,7 @@ import { useGlobals } from "./hooks/useGlobals";
 import "../css/app.css";
 import "../css/navbar.css";
 import "../css/footer.css";
+import AboutPage from "./screens/About.tsx/Index";
 
 function App() {
   const location = useLocation(); //<Router/> is not here cuz useLocation wont work and here we have 2 navbars
@@ -92,6 +93,9 @@ function App() {
         </Route>
         <Route path="/help">
           <HelpPage />
+        </Route>
+        <Route path="/about">
+          <AboutPage />
         </Route>
         <Route path="/">
           {/* <Test /> */}

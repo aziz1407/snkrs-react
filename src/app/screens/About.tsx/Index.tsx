@@ -21,7 +21,7 @@ import TabPanel from "@mui/lab/TabPanel";
 import { faq } from "../../../lib/data/faq";
 import { terms } from "../../../lib/data/terms";
 
-export default function HelpPage() {
+export default function AboutPage() {
   const [value, setValue] = React.useState("1");
 
   const handleChange = (_event: React.SyntheticEvent, newValue: string) => {
@@ -40,14 +40,11 @@ export default function HelpPage() {
       }}
     >
       <Container maxWidth="md">
-        <Paper
+        <Paper className="help-paper"
           elevation={10}
           sx={{
             borderRadius: 8,
             p: 6,
-            background: "#fff",
-            boxShadow: "0 30px 60px rgba(0, 0, 0, 0.12)",
-            border: "1px solid #e0e0e0",
           }}
         >
           <TabContext value={value}>
@@ -58,7 +55,7 @@ export default function HelpPage() {
                 mb: 6,
               }}
             >
-              <Tabs
+              <Tabs className="tabs"
                 value={value}
                 onChange={handleChange}
                 indicatorColor="primary"
@@ -67,7 +64,6 @@ export default function HelpPage() {
                 sx={{
                   background: "#f1f5f9",
                   borderRadius: 6,
-                  boxShadow: "inset 0 0 8px rgba(0,0,0,0.05)",
                 }}
               >
                 <Tab label="Terms" value="1" sx={{ fontWeight: 700,  }} />
@@ -100,6 +96,7 @@ export default function HelpPage() {
                       borderRadius: 4,
                       background: "#ffffff",
                       border: "1px solid #e0e0e0",
+                      
                     }}
                   >
                     <AccordionSummary
@@ -128,7 +125,7 @@ export default function HelpPage() {
                   Reach Out To Us 💬
                 </Typography>
                 <Typography variant="body1" gutterBottom sx={{color: "#000"}}>
-                  We’d love to hear from you — whether it's a question, feedback or
+                  We'd love to hear from you — whether it's a question, feedback or
                   just a hello.
                 </Typography>
 

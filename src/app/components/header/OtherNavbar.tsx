@@ -1,4 +1,12 @@
-import { Box, Button, Container, ListItemIcon, Menu, MenuItem, Stack } from "@mui/material";
+import {
+  Box,
+  Button,
+  Container,
+  ListItemIcon,
+  Menu,
+  MenuItem,
+  Stack,
+} from "@mui/material";
 import { NavLink } from "react-router-dom";
 import Basket from "./Basket";
 import { CartItem } from "../../../lib/data/types/search";
@@ -39,7 +47,7 @@ export default function OtherNavbar(props: OtherNavbarProps) {
         <Stack className="menu">
           <Box>
             <NavLink to="/">
-              <img className="brand-logo"/>
+              <img className="brand-logo" />
             </NavLink>
           </Box>
           <Stack className="links">
@@ -68,6 +76,11 @@ export default function OtherNavbar(props: OtherNavbarProps) {
             <Box className="hover-line">
               <NavLink to="/help" activeClassName={"underline"}>
                 Help
+              </NavLink>
+            </Box>
+            <Box className="hover-line">
+              <NavLink to="/about" activeClassName={"underline"}>
+                About
               </NavLink>
             </Box>
             <Basket

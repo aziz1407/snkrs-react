@@ -1,7 +1,5 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
 import { Box, Container, InputBase, Stack } from "@mui/material";
-import Badge from "@mui/material/Badge";
-import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import Button from "@mui/material/Button"; // MUI Button
 import SearchIcon from "@mui/icons-material/Search";
 import Pagination from "@mui/material/Pagination";
@@ -333,7 +331,7 @@ export default function Products(props: ProductsProps) {
         </Stack>
       </Container>
 
-      <div className={"brands-logo"}>
+      {/* <div className={"brands-logo"}>
         <Stack className="logo-frame">
           <Box className="brand-name">Our Family Brands</Box>
           <Stack className="logo-box">
@@ -343,9 +341,9 @@ export default function Products(props: ProductsProps) {
             <Box className="box-4"></Box>
           </Stack>
         </Stack>
-      </div>
+      </div> */}
 
-      <div className={"address"}>
+      {/* <div className={"address"}>
         <Container>
           <Stack className={"address-area"}>
             <Box className={"title"}>Our address</Box>
@@ -358,7 +356,7 @@ export default function Products(props: ProductsProps) {
             ></iframe>
           </Stack>
         </Container>
-      </div>
+      </div> */}
     </div>
   );
 }

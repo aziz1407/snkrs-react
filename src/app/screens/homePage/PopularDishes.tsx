@@ -14,6 +14,7 @@ import { createSelector } from "reselect";
 import { retrievePopularDishes } from "./selector";
 import { Product } from "../../../lib/data/types/product";
 import { serverApi } from "../../../lib/config";
+import { useTheme } from "@mui/material/styles";
 
 /** REDUX SLICE & SELECTOR **/
 const popularDishesRetriever = createSelector(
@@ -23,40 +24,65 @@ const popularDishesRetriever = createSelector(
 
 export default function PopularDishes() {
   const { popularDishes } = useSelector(popularDishesRetriever);
+  const theme = useTheme();
+  const isDark = theme.palette.mode === "dark";
 
   return (
-    <div className="popular-dishes-frame">
+    <div
+      className="popular-dishes-frame"
+      style={{ background: theme.palette.background.default }}
+    >
       <Container>
         <Stack className="popular-section">
-          <Box className="category-title">Popular Dishes</Box>
+          <Box
+             sx={{
+              fontFamily: "'Dancing Script'",
+              fontSize: 36,
+              fontWeight: 700,
+              lineHeight: "43px",
+              color: theme.palette.text.primary,
+            }}
+            className="category-title"
+          >
+            Popular Dishes
+          </Box>
           <Stack className="cards-frame">
             {popularDishes.length !== 0 ? (
               popularDishes.map((product: Product) => {
                 const imagePath = `${serverApi}/${product.productImages[0]}`; // Declare here
                 return (
                   <CssVarsProvider key={product._id}>
-                    <Card className={"card"}>
+                    <Card
+                      className="card"
+                      sx={{
+                        backgroundColor: isDark ? "#1e1e1e" : "#ffffff",
+                        color: isDark ? "#ffffff" : "#000000",
+                        borderRadius: "12px",
+                      }}
+                    >
                       <CardCover>
                         <img src={imagePath} alt={product.productName} />
                       </CardCover>
-                      <CardCover className={"card-cover"} />
+
+                      <CardCover className="card-cover" />
+
                       <CardContent sx={{ justifyContent: "flex-end" }}>
                         <Stack
-                          flexDirection={"row"}
-                          justifyContent={"space-between"}
+                          flexDirection="row"
+                          justifyContent="space-between"
                         >
                           <Typography
                             level="h2"
                             fontSize="lg"
-                            textColor="#fff"
-                            mb={1}
+                            sx={{ color: isDark ? "#fff" : "#000", mb: 1 }}
                           >
                             {product.productName}
                           </Typography>
+
                           <Typography
                             sx={{
                               fontWeight: "md",
-                              color: "neutral.300",
+                              color: isDark ? "#aaa" : "#444",
                               alignItems: "center",
                               display: "flex",
                             }}
@@ -68,6 +94,7 @@ export default function PopularDishes() {
                           </Typography>
                         </Stack>
                       </CardContent>
+
                       <CardOverflow
                         sx={{
                           display: "flex",
@@ -75,12 +102,14 @@ export default function PopularDishes() {
                           py: 1.5,
                           px: "var(--Card-padding)",
                           borderTop: "1px solid",
+                          borderColor: isDark ? "#333" : "#ccc",
+                          backgroundColor: isDark ? "#171717" : "#f5f5f5",
                           height: "60px",
                         }}
                       >
                         <Typography
                           startDecorator={<DescriptionOutlinedIcon />}
-                          textColor="neutral.300"
+                          sx={{ color: isDark ? "#ccc" : "#444" }}
                         >
                           {product.productDesc}
                         </Typography>

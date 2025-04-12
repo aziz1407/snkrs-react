@@ -16,6 +16,10 @@ import { serverApi } from "../../../lib/config";
 import { Logout } from "@mui/icons-material";
 import LoginIcon from "@mui/icons-material/Login";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
+import { useThemeMode } from "../../../app/context/ThemeModeContext";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
+import LightModeIcon from "@mui/icons-material/LightMode";
+
 
 interface HomeNavbarProps {
   cartItems: CartItem[];
@@ -45,7 +49,9 @@ export default function HomeNavbar(props: HomeNavbarProps) {
     handleCloseLogout,
     handleLogoutRequest,
   } = props;
+  
   const { authMember } = useGlobals();
+  const { mode, toggleColorMode } = useThemeMode(); // Using the theme mode context
 
   return (
     <div className="home-navbar">
@@ -86,6 +92,12 @@ export default function HomeNavbar(props: HomeNavbarProps) {
                 Help
               </NavLink>
             </Box>
+            <Box className="hover-line">
+              <NavLink to="/about" activeClassName={"underline"}>
+                About
+              </NavLink>
+            </Box>
+            
             <Basket
               cartItems={cartItems}
               onAdd={onAdd}
@@ -93,17 +105,36 @@ export default function HomeNavbar(props: HomeNavbarProps) {
               onDelete={onDelete}
               onDeleteAll={onDeleteAll}
             />
-            {!authMember ? (
-              <Box sx={{ display: "flex", gap: "12px" }}>
-                <Button
-                  variant="contained"
-                  className="login-button"
-                  onClick={() => setLoginOpen(true)}
-                >
-                  <LoginIcon sx={{ mr: 1 }} />
-                  Login
-                </Button>
-                {!authMember && (
+
+            {/* Toggle Button */}
+            <Box sx={{ display: "flex", gap: "12px", alignItems: "center" }}>
+              <Button
+                variant="contained"
+                onClick={toggleColorMode} // Trigger theme change on button click
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  backgroundColor: "transparent",
+                  color: mode === "dark" ? "white" : "black", 
+                }}
+              >
+                {mode === "dark" ? (
+                  <LightModeIcon sx={{ mr: 1 }} />
+                ) : (
+                  <DarkModeIcon sx={{ mr: 1 }} />
+                )}
+              </Button>
+
+              {!authMember ? (
+                <Box sx={{ display: "flex", gap: "12px" }}>
+                  <Button
+                    variant="contained"
+                    className="login-button"
+                    onClick={() => setLoginOpen(true)}
+                  >
+                    <LoginIcon sx={{ mr: 1 }} />
+                    Login
+                  </Button>
                   <Button
                     variant="contained"
                     className="signup-button"
@@ -112,20 +143,20 @@ export default function HomeNavbar(props: HomeNavbarProps) {
                     <PersonAddIcon sx={{ mr: 1 }} />
                     SignUp
                   </Button>
-                )}
-              </Box>
-            ) : (
-              <img
-                className="user-avatar"
-                src={
-                  authMember?.memberImage
-                    ? `${serverApi}/${authMember?.memberImage}`
-                    : "/icons/default-user.svg"
-                }
-                aria-haspopup={"true"}
-                onClick={handleLogoutClick}
-              />
-            )}
+                </Box>
+              ) : (
+                <img
+                  className="user-avatar"
+                  src={
+                    authMember?.memberImage
+                      ? `${serverApi}/${authMember?.memberImage}`
+                      : "/icons/default-user.svg"
+                  }
+                  aria-haspopup={"true"}
+                  onClick={handleLogoutClick}
+                />
+              )}
+            </Box>
 
             <Menu
               anchorEl={anchorEl}
@@ -139,32 +170,12 @@ export default function HomeNavbar(props: HomeNavbarProps) {
                   overflow: "visible",
                   filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
                   mt: 1.5,
-                  "& .MuiAvatar-root": {
-                    width: 32,
-                    height: 32,
-                    ml: -0.5,
-                    mr: 1,
-                  },
-                  "&:before": {
-                    content: '""',
-                    display: "block",
-                    position: "absolute",
-                    top: 0,
-                    right: 14,
-                    width: 10,
-                    height: 10,
-                    bgcolor: "background.paper",
-                    transform: "translateY(-50%) rotate(45deg)",
-                    zIndex: 0,
-                  },
                 },
               }}
-              transformOrigin={{ horizontal: "right", vertical: "top" }}
-              anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
             >
               <MenuItem onClick={handleLogoutRequest}>
                 <ListItemIcon>
-                  <Logout fontSize="small" style={{ color: "blue" }} />
+                  <Logout fontSize="small" />
                 </ListItemIcon>
                 Logout
               </MenuItem>
@@ -184,3 +195,4 @@ export default function HomeNavbar(props: HomeNavbarProps) {
     </div>
   );
 }
+
