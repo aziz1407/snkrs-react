@@ -75,21 +75,24 @@
 }
 
 .home-navbar .navbar-container .header-frame {
-    margin: 80px auto 0 auto; /* centers horizontally */
-    width: 90%; /* or any value like 1000px for fixed width */
-    max-width: 1200px;
-    height: auto;
-    display: flex;
-    flex-direction: row; /* horizontal layout */
-    justify-content: center;
-    align-items: center;
-    gap: 60px;
-    animation: fadeInUp 1.2s ease forwards;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  justify-content: center; 
+  text-align: center;
+  margin-top: 100px;
+}
+
+.detail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 @keyframes fadeInUp {
     0% { opacity: 0; transform: translateY(40px); }
-    100% { opacity: 1.3; transform: translateY(0); }
+    100% { opacity: 0.9; transform: translateY(0); }
 }
 
 .home-navbar .navbar-container .header-frame .detail {
@@ -109,7 +112,7 @@
 
 @keyframes slideFade {
     0% { opacity: 0; transform: translateX(-20px); }
-    100% { opacity: 0.5; transform: translateX(0); }
+    100% { opacity: 0.9; transform: translateX(0); }
 }
 
 .home-navbar .navbar-container .header-frame .detail .head-main-txt {
@@ -118,22 +121,21 @@
     font-weight: bold;
     line-height: 1.2;
     letter-spacing: -1px;
-    color: rgba(255, 255, 255, 0.95); /* nearly pure white with a soft glow */
+    color: rgba(255, 255, 255, 0.95); 
     margin-bottom: 20px;
-    text-shadow: 0px 3px 12px rgba(0, 170, 255, 0.3); /* subtle sky-blue glow */
+    text-shadow: 0px 3px 12px rgba(0, 170, 255, 0.3); 
 }
 
 .home-navbar .navbar-container .header-frame .detail .welcome-txt {
     font-family: 'Poppins', sans-serif;
     font-size: 32px;
     font-weight: 700;
-    color: #e0f7ff; /* brighter sky-ish tone */
+    color: #e0f7ff; 
     margin-bottom: 16px;
     text-align: center;
-    text-shadow: 0px 2px 6px rgba(0, 170, 255, 0.2); /* elegant ambient glow */
+    text-shadow: 0px 2px 6px rgba(0, 170, 255, 0.2); 
 }
 
-/* Shared styles */
 .home-navbar .login-button,
 .home-navbar .signup-button {
   display: flex;
@@ -161,7 +163,6 @@
     font-weight: 600;
   }
   
-  /* Signup button - slightly different tint for harmony */
   .home-navbar .signup-button {
     background: linear-gradient(135deg, #ffffff, #e8f7ff);
     color: #1a1a1a;

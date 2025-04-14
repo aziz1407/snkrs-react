@@ -36,7 +36,7 @@ export default function PopularDishes() {
         <Stack className="popular-section">
           <Box
              sx={{
-              fontFamily: "'Dancing Script'",
+              fontFamily: "sans-serif",
               fontSize: 36,
               fontWeight: 700,
               lineHeight: "43px",

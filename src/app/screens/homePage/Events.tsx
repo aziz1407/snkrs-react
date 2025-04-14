@@ -36,7 +36,7 @@ export default function Events() {
 
   return (
     <Box className="events-section" sx={{ backgroundColor: theme.palette.background.default }}>
-      <h2 className="events-title" style={{fontStyle: "Dancing Script"}}>Explore More</h2>
+      <h2 className="events-title" style={{fontStyle: "sans-serif"}}>Explore More</h2>
 
       <motion.div ref={wrapperRef} className="carousel-outer">
         <motion.div

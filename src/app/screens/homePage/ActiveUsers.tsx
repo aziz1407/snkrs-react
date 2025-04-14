@@ -37,7 +37,7 @@ export default function ActiveUsers() {
           <Box
             className={"category-title"}
             sx={{
-              fontFamily: "'Dancing Script'",
+              fontFamily: "sans-serif",
               fontSize: 36,
               fontWeight: 700,
               lineHeight: "43px",

@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import Basket from "./Basket";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { CartItem } from "../../../lib/data/types/search";
 import { useGlobals } from "../../../app/hooks/useGlobals";
 import { serverApi } from "../../../lib/config";

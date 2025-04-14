@@ -330,33 +330,6 @@ export default function Products(props: ProductsProps) {
           </Stack>
         </Stack>
       </Container>
-
-      {/* <div className={"brands-logo"}>
-        <Stack className="logo-frame">
-          <Box className="brand-name">Our Family Brands</Box>
-          <Stack className="logo-box">
-            <Box className="box-1"></Box>
-            <Box className="box-2"></Box>
-            <Box className="box-3"></Box>
-            <Box className="box-4"></Box>
-          </Stack>
-        </Stack>
-      </div> */}
-
-      {/* <div className={"address"}>
-        <Container>
-          <Stack className={"address-area"}>
-            <Box className={"title"}>Our address</Box>
-            <iframe
-              style={{ marginTop: "60px" }}
-              width="1320"
-              height="1000"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3610.3925601988574!2d55.27812847531649!3d25.193269077772765!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f6955cdc0a649%3A0xf08ece466df23124!2sCZN%20Burak%20Dubai!5e0!3m2!1sen!2sus!4v1705349427043!5m2!1sen!2sus"
-              referrerPolicy="no-referrer-when-downgrade"
-            ></iframe>
-          </Stack>
-        </Container>
-      </div> */}
     </div>
   );
 }

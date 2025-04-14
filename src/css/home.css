@@ -60,16 +60,6 @@
     align-items: center;
 }
 
-/* .homepage .popular-dishes-frame .popular-section .category-title {
-    text-align: center;
-    font-family: "Dancing Script";
-    font-size: 36px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
-    letter-spacing: 1.44px;
-    color: #000;
-} */
 
 .homepage .popular-dishes-frame .popular-section .cards-frame {
     margin-top: 43px;
@@ -124,14 +114,6 @@
     align-items: center;
 }
 
-/* .homepage .new-products-frame .category-title {
-    font-family: "Dancing Script";
-    font-size: 36px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 43px;
-    color: #343434;
-} */
 
 .homepage .new-products-frame .cards-frame {
     width: 100%;
@@ -260,16 +242,6 @@
     align-items: center;
 }
 
-/* .homepage .active-users-frame .category-title {
-    font-family: "Dancing Script";
-    font-size: 36px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
-    text-align: center;
-   
-} */
-
 .homepage .active-users-frame .cards-frame {
     width: 100%;
     margin-top: 57px;
@@ -326,7 +298,6 @@
     text-align: center;
     margin: 0 0 20px 0;
     letter-spacing: -0.5px;
-    font-family: "Dancing Script";
     transition: transform 0.3s ease, text-shadow 0.3s ease;
   }
 
