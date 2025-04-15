@@ -14,12 +14,11 @@ import { Product } from "../../../lib/data/types/product";
 import { serverApi } from "../../../lib/config";
 import { ProductCollection } from "../../../lib/data/enums/product.enum";
 
-/** REDUX SLICE & SELECTOR **/
 const newDishesRetriever = createSelector(retrieveNewDishes, (newDishes) => ({
   newDishes,
 }));
 
-export default function NewDishes() {
+export default function NewArrival() {
   const theme = useTheme();
   const isDark = theme.palette.mode === "dark"; 
   const { newDishes } = useSelector(newDishesRetriever);
@@ -29,16 +28,16 @@ export default function NewDishes() {
       className="new-products-frame"
       sx={{
         width: "100%",
-        height: 605,
         display: "flex",
-        background: theme.palette.background.default, 
+        background: theme.palette.background.default,
+        paddingY: 8,
+        alignItems: "center",
       }}
     >
-      <Container>
+      <Container maxWidth="xl">
         <Stack
           className="main"
           sx={{
-            marginTop: 45,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -52,94 +51,94 @@ export default function NewDishes() {
               fontWeight: 700,
               lineHeight: "43px",
               color: theme.palette.text.primary,
+              mb: 4,
             }}
           >
-            Fresh Menu
+            New Drops
           </Box>
           <Stack
             className="cards-frame"
-            sx={{
-              width: "100%",
-              margin: "47px 2px 2px 2px",
-              flexDirection: "row",
-              justifyContent: "space-between",
-            }}
+            direction="row"
+            spacing={3}
+            flexWrap="wrap"
+            justifyContent="center"
           >
             <CssVarsProvider>
               {newDishes.length !== 0 ? (
                 newDishes.map((product: Product) => {
                   const imagePath = `${serverApi}/${product.productImages[0]}`;
-                  const sizeVolume =
-                    product.productCollection === ProductCollection.DRINK
-                      ? product.productVolume + "l"
-                      : product.productSize + "size";
                   return (
                     <Card
                       key={product._id}
                       variant="outlined"
+                      className="card"
                       sx={{
-                        borderRadius: 3,
-                        boxShadow: 3,
+                        width: 300,
+                        height: 390,
+                        borderRadius: 4,
+                        boxShadow: isDark ? 4 : 2,
                         transition: "transform 0.3s ease",
-                        "&:hover": {
-                          transform: "scale(1.05)",
+                        backgroundColor: isDark ? "#1e1e1e" : "#ffffff",
+                        color: isDark ? "#ffffff" : "#000000",
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "space-between",
+                        '&:hover': {
+                          transform: "scale(1.03)",
                           boxShadow: 6,
                         },
-                        backgroundColor: isDark ? "#1e1e1e" : "#ffffff", 
-                        color: isDark ? "#ffffff" : "#000000", 
                       }}
                     >
-                      <CardOverflow>
-                        <div
+                      <CardOverflow sx={{ position: "relative" }}>
+                        <Box
                           className="product-sale"
-                          style={{
+                          sx={{
                             position: "absolute",
                             top: 10,
-                            right: 10,
-                            backgroundColor: theme.palette.primary.main,
-                            padding: "4px 8px",
-                            borderRadius: "4px",
-                            color: theme.palette.background.default,
-                            fontSize: "0.8rem",
+                            left: 10,
+                            zIndex: 10,
+                            backgroundColor: "skyblue",
+                            color: "#fff",
+                            paddingX: 1.5,
+                            paddingY: 0.5,
+                            borderRadius: 5,
+                            fontSize: 12,
+                            fontWeight: 600,
                           }}
                         >
-                          {sizeVolume}
-                        </div>
-                        <AspectRatio ratio="1">
-                          <img src={imagePath} alt={product.productName} />
+                          {product.productSize}
+                        </Box>
+                        <AspectRatio ratio={1}>
+                          <img
+                            src={imagePath} alt={product.productName}
+                            style={{ borderRadius: "10px", objectFit: "cover" }}
+                          />
                         </AspectRatio>
                       </CardOverflow>
                       <CardOverflow
                         className="product-detail"
                         sx={{
-                          backgroundColor: theme.palette.background.default,
-                          color: theme.palette.text.primary,
+                          backgroundColor: isDark ? "#111" : "#f9f9f9",
                           padding: 2,
+                          display: "flex",
+                          flexDirection: "column",
+                          gap: 1,
+                          borderTop: "1px solid #e0e0e0",
                         }}
                       >
-                        <Stack className="info">
-                          <Stack flexDirection="row" alignItems="center">
-                            <Typography
-                              className="title"
-                              sx={{
-                                fontWeight: 600,
-                                fontSize: "1rem",
-                                color: theme.palette.text.primary,
-                              }}
-                            >
-                              {product.productName}
-                            </Typography>
-                            <Divider width="2" height="24" bg="#d9d9d9" />
-                            <Typography
-                              className="price"
-                              sx={{
-                                fontWeight: 600,
-                                color: theme.palette.text.secondary,
-                              }}
-                            >
-                              ${product.productPrice}
-                            </Typography>
-                          </Stack>
+                        <Stack
+                          className="info"
+                          direction="row"
+                          alignItems="center"
+                          justifyContent="space-between"
+                        >
+                          <Typography className="title" sx={{ fontWeight: 600 }}>
+                            {product.productName}
+                          </Typography>
+                          <Divider width="2" height="24" bg="#d9d9d9" />
+                          <Typography className="price" sx={{ fontWeight: 600 }}>
+                            ${product.productPrice}
+                          </Typography>
                         </Stack>
                         <Typography
                           className="views"
@@ -150,12 +149,7 @@ export default function NewDishes() {
                           }}
                         >
                           {product.productViews}
-                          <VisibilityIcon
-                            sx={{
-                              fontSize: 20,
-                              marginLeft: "5px",
-                            }}
-                          />
+                          <VisibilityIcon sx={{ fontSize: 20, marginLeft: "5px" }} />
                         </Typography>
                       </CardOverflow>
                     </Card>

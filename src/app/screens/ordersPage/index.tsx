@@ -35,14 +35,14 @@ export default function OrdersPage() {
   const [orderInquiry, setorderInquiry] = useState<OrderInquiry>({
     page: 1,
     limit: 5,
-    orderStatus: OrderStatus.PAUSE,
+    orderStatus: OrderStatus.HOLD,
   });
 
   useEffect(() => {
     const order = new OrderService();
 
     order
-      .getMyOrders({ ...orderInquiry, orderStatus: OrderStatus.PAUSE })
+      .getMyOrders({ ...orderInquiry, orderStatus: OrderStatus.HOLD })
       .then((data) => setPausedOrders(data))
       .catch((err) => console.log(err));
 
@@ -52,7 +52,7 @@ export default function OrdersPage() {
       .catch((err) => console.log(err));
 
     order
-      .getMyOrders({ ...orderInquiry, orderStatus: OrderStatus.FINISH })
+      .getMyOrders({ ...orderInquiry, orderStatus: OrderStatus.SOLD })
       .then((data) => setFinishedOrders(data))
       .catch((err) => console.log(err));
   }, [orderInquiry, orderBuilder]);
@@ -79,14 +79,14 @@ export default function OrdersPage() {
                 value={value}
                 onChange={handleChange}
                 aria-label="basic-tabs-example"
-                style={{ marginLeft: "50px" }}
+                style={{ marginLeft: "50px",  backgroundColor: "#ffffff"}}
               >
                 <Tab label="PAUSED ORDERS" value={"1"}></Tab>
                 <Tab label="PROCESS ORDERS" value={"2"}></Tab>
                 <Tab label="FINISHED ORDERS" value={"3"}></Tab>
               </Tabs>
             </Box>
-            <Stack className="order-main-content">
+            <Stack className="order-main-content" sx={{}}>
               <PausedOrders setValue={setValue} />
               <ProcessOrders setValue={setValue} />
               <FinishedOrders />

@@ -31,7 +31,7 @@ export default function FinishedOrders() {
                   )[0];
                   const imagePath = `${serverApi}/${product.productImages[0]}`;
                   return (
-                    <Box key={item._id} className={"orders-name-price"}>
+                    <Box key={item._id} className={"orders-name-price"} sx={{color: "black"}}>
                       <img
                         src={imagePath}
                         className="order-dish-img"
@@ -51,14 +51,14 @@ export default function FinishedOrders() {
 
               <Box className={"total-price-box"}>
                 <Box className={"box-total"}>
-                  <p>Product Price</p>
-                  <p>${order.orderTotal - order.orderDelivery}</p>
+                  <p style={{color: "black"}}>Product Price</p>
+                  <p style={{color: "black"}}>${order.orderTotal - order.orderDelivery}</p>
                   <img src={"/icons/plus.svg"} />
-                  <p style={{ marginLeft: "10px" }}>Delivery fee</p>
+                  <p style={{ marginLeft: "10px", color: "black" }}>Delivery fee</p>
                   <p>${order.orderDelivery}</p>
                   <img src={"/icons/pause.svg"} />
-                  <p style={{ marginRight: "10px" }}>Total</p>
-                  <p style={{ marginRight: "10px" }}>${order.orderTotal}</p>
+                  <p style={{ marginRight: "10px", color: "black" }}>Total</p>
+                  <p style={{ marginRight: "10px", color: "black" }}>${order.orderTotal}</p>
                 </Box>
               </Box>
             </Box>

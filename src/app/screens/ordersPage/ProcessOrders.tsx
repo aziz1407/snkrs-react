@@ -44,7 +44,7 @@ export default function ProcessOrders(props: ProcessedOrdersProps) {
       const orderId = e.target.value;
       const input: OrderUpdateInput = {
         orderId: orderId,
-        orderStatus: OrderStatus.FINISH,
+        orderStatus: OrderStatus.SOLD,
       };
 
       const confirmation = window.confirm("Got your order?");
@@ -66,7 +66,7 @@ export default function ProcessOrders(props: ProcessedOrdersProps) {
       <Stack>
         {processOrders?.map((order: Order) => {
           return (
-            <Box key={order._id} className={"order-main-box"}>
+            <Box key={order._id} className={"order-main-box"} sx={{color: "black"}}>
               <Box className="order-box-scroll">
                 {order?.orderItems?.map((item: OrderItem) => {
                   const product: Product = order.productData.filter(
@@ -91,14 +91,14 @@ export default function ProcessOrders(props: ProcessedOrdersProps) {
 
               <Box className={"total-price-box"}>
                 <Box className={"box-total"}>
-                  <p>Product Price</p>
-                  <p>${order.orderTotal - order.orderDelivery}</p>
+                  <p style={{color: "black"}}>Product Price</p>
+                  <p style={{color: "black"}}>${order.orderTotal - order.orderDelivery}</p>
                   <img src={"/icons/plus.svg"} />
-                  <p style={{ marginLeft: "10px" }}>Delivery fee</p>
+                  <p style={{ marginLeft: "10px", color: "black" }}>Delivery fee</p>
                   <p>${order.orderDelivery}</p>
                   <img src={"/icons/pause.svg"} />
-                  <p style={{ marginRight: "10px" }}>Total</p>
-                  <p style={{ marginRight: "10px" }}>${order.orderTotal}</p>
+                  <p style={{ marginRight: "10px", color: "black" }}>Total</p>
+                  <p style={{ marginRight: "10px", color: "black" }}>${order.orderTotal}</p>
                 </Box>
                 <p style={{ marginRight: "5px" }}>
                   {moment().format("YY-MM-DD: HH:mm")}

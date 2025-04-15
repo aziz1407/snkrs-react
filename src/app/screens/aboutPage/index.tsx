@@ -23,10 +23,11 @@ export default function AboutPage() {
                 align="center"
                 gutterBottom
                 fontWeight="bold"
+                color = "black"
               >
                 Who are we?
               </Typography>
-              <Typography variant="body1" className="about-text">
+              <Typography className="about-text" color = "black">
                 Founded on July 14, 2003, in the heart of Andijan, Uzbekistan,
                 our SNKRS store began as a small local sneaker hub and has since
                 grown into a destination for sneaker enthusiasts across the
@@ -135,7 +136,7 @@ export default function AboutPage() {
               <Box className="logo-item">
                 <div className="card-container">
                   <img
-                    src={"/img/pumanew.jpg"}
+                    src={"/img/p.jpg"}
                     alt="Jordan"
                     className="brand-image"
                   />

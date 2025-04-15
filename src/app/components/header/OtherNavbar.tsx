@@ -69,18 +69,18 @@ export default function OtherNavbar(props: OtherNavbarProps) {
             {authMember ? (
               <Box className="hover-line">
                 <NavLink to="/member-page" activeClassName={"underline"}>
-                  My Page
+                  My Zone
                 </NavLink>
               </Box>
             ) : null}
-            <Box className="hover-line">
-              <NavLink to="/help" activeClassName={"underline"}>
-                Help
+              <Box className="hover-line">
+              <NavLink to="/about" activeClassName={"underline"}>
+                About
               </NavLink>
             </Box>
             <Box className="hover-line">
-              <NavLink to="/about" activeClassName={"underline"}>
-                About
+              <NavLink to="/help" activeClassName={"underline"}>
+                Help
               </NavLink>
             </Box>
             <Basket

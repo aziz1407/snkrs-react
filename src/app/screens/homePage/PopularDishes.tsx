@@ -47,80 +47,74 @@ export default function PopularDishes() {
             Popular Dishes
           </Box>
           <Stack className="cards-frame">
-            {popularDishes.length !== 0 ? (
-              popularDishes.map((product: Product) => {
-                const imagePath = `${serverApi}/${product.productImages[0]}`; // Declare here
-                return (
-                  <CssVarsProvider key={product._id}>
-                    <Card
-                      className="card"
-                      sx={{
-                        backgroundColor: isDark ? "#1e1e1e" : "#ffffff",
-                        color: isDark ? "#ffffff" : "#000000",
-                        borderRadius: "12px",
-                      }}
-                    >
-                      <CardCover>
-                        <img src={imagePath} alt={product.productName} />
-                      </CardCover>
+          {popularDishes.length !== 0 ? (
+  popularDishes.map((product: Product) => {
+    const imagePath = `${serverApi}/${product.productImages[0]}`;
+    return (
+      <Card
+        key={product._id}
+        className="card"
+        sx={{
+          backgroundColor: isDark ? "#1e1e1e" : "#ffffff",
+          color: isDark ? "#ffffff" : "#000000",
+          borderRadius: "12px",
+        }}
+      >
+        <CardCover>
+          <img src={imagePath} alt={product.productName} />
+        </CardCover>
 
-                      <CardCover className="card-cover" />
+        <CardCover className="card-cover" />
 
-                      <CardContent sx={{ justifyContent: "flex-end" }}>
-                        <Stack
-                          flexDirection="row"
-                          justifyContent="space-between"
-                        >
-                          <Typography
-                            level="h2"
-                            fontSize="lg"
-                            sx={{ color: isDark ? "#fff" : "#000", mb: 1 }}
-                          >
-                            {product.productName}
-                          </Typography>
+        <CardContent sx={{ justifyContent: "flex-end" }}>
+          <Stack flexDirection="row" justifyContent="space-between">
+            <Typography
+              level="h2"
+              fontSize="lg"
+              sx={{ color: isDark ? "#fff" : "#000", mb: 1 }}
+            >
+              {product.productName}
+            </Typography>
 
-                          <Typography
-                            sx={{
-                              fontWeight: "md",
-                              color: isDark ? "#aaa" : "#444",
-                              alignItems: "center",
-                              display: "flex",
-                            }}
-                          >
-                            {product.productViews}
-                            <VisibilityIcon
-                              sx={{ fontSize: 25, marginLeft: "5px" }}
-                            />
-                          </Typography>
-                        </Stack>
-                      </CardContent>
+            <Typography
+              sx={{
+                fontWeight: "md",
+                color: isDark ? "#aaa" : "#444",
+                alignItems: "center",
+                display: "flex",
+              }}
+            >
+              {product.productViews}
+              <VisibilityIcon sx={{ fontSize: 25, marginLeft: "5px" }} />
+            </Typography>
+          </Stack>
+        </CardContent>
 
-                      <CardOverflow
-                        sx={{
-                          display: "flex",
-                          gap: 1.5,
-                          py: 1.5,
-                          px: "var(--Card-padding)",
-                          borderTop: "1px solid",
-                          borderColor: isDark ? "#333" : "#ccc",
-                          backgroundColor: isDark ? "#171717" : "#f5f5f5",
-                          height: "60px",
-                        }}
-                      >
-                        <Typography
-                          startDecorator={<DescriptionOutlinedIcon />}
-                          sx={{ color: isDark ? "#ccc" : "#444" }}
-                        >
-                          {product.productDesc}
-                        </Typography>
-                      </CardOverflow>
-                    </Card>
-                  </CssVarsProvider>
-                );
-              })
-            ) : (
-              <Box className="no-data">New products are not available!</Box>
-            )}
+        <CardOverflow
+          sx={{
+            display: "flex",
+            gap: 1.5,
+            py: 1.5,
+            px: "var(--Card-padding)",
+            borderTop: "1px solid",
+            borderColor: isDark ? "#333" : "#ccc",
+            backgroundColor: isDark ? "#171717" : "#f5f5f5",
+            height: "60px",
+          }}
+        >
+          <Typography
+            startDecorator={<DescriptionOutlinedIcon />}
+            sx={{ color: isDark ? "#ccc" : "#444" }}
+          >
+            {product.productDesc}
+          </Typography>
+        </CardOverflow>
+      </Card>
+    );
+  })
+) : (
+  <Box className="no-data">New products are not available!</Box>
+)}
           </Stack>
         </Stack>
       </Container>

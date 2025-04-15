@@ -1,28 +1,25 @@
 export enum ProductSize {
-    SMALL = "SMALL",
-    NORMAL = "NORMAL",
-    LARGE = "LARGE",
-    SET = "SET"
-}
-
-export enum ProductVolume {
-    HALF = 0.5,
-    ONE = 1,
-    ONE_POINT_TWO = 1.2,
-    ONE_POINT_FIVE = 1.5,
-    TWO = 2,
-}
-
-export enum ProductStatus {
-    PAUSE = "PAUSE",
-    PROCESS = "PROCESS",
-    DELETE = "DELETE",
-}
-
-export enum ProductCollection {
-    DISH = "DISH",
-    SALAD = "SALAD",
-    DESSERT = "DESSERT",
-    DRINK = "DRINK",
-    OTHER = "OTHER",
-}
+    S = "40",
+    M = "41",
+    L = "42",
+    XL = "43",
+  }
+  
+  export enum ProductFilter {  //instead of productVolume
+     MEN = "MEN",
+  }
+  
+  export enum ProductStatus {
+      HOLD = "HOLD",
+      SALE = "SALE",
+      SOLD = "SOLD",
+      DELETE = "DELETE",
+  }
+  
+  export enum ProductCollection {
+    NIKE = "NIKE",
+    ADIDAS = "ADIDAS",
+    PUMA = "PUMA",
+    NEW_BALANCE = "NEW BALANCE",
+    MIX = "MIX"
+  }

@@ -96,9 +96,9 @@ export default function PausedOrders(props: PausedOrdersProps) {
                   )[0];
                   const imagePath = `${serverApi}/${product.productImages[0]}`;
                   return (
-                    <Box key={item._id} className={"orders-name-price"}>
+                    <Box key={item._id} className={"orders-name-price"} sx={{color: "black"}}>
                       <img src={imagePath} className="order-dish-img" />
-                      <p className={"title-dish"}>{product.productName}</p>
+                      <p className={"title-dish"} >{product.productName}</p>
                       <Box className={"price-box"}>
                         <p>${item.itemPrice}</p>
                         <img src={"/icons/close.svg"} />
@@ -113,13 +113,13 @@ export default function PausedOrders(props: PausedOrdersProps) {
 
               <Box className={"total-price-box"}>
                 <Box className={"box-total"}>
-                  <p>Product Price</p>
-                  <p>${order.orderTotal - order.orderDelivery}</p>
+                  <p style={{color: "black"}}>Product Price</p>
+                  <p style={{color: "black"}} >${order.orderTotal - order.orderDelivery}</p>
                   <img src={"/icons/plus.svg"} />
-                  <p style={{ marginLeft: "10px" }}>Delivery fee</p>
-                  <p>${order.orderDelivery}</p>
+                  <p style={{ marginLeft: "10px", color: "black" }}>Delivery fee</p>
+                  <p style={{color: "black"}}>${order.orderDelivery}</p>
                   <img src={"/icons/pause.svg"} />
-                  <p style={{ marginLeft: "10px" }}>Total</p>
+                  <p style={{ marginLeft: "10px", color: "black"}}>Total</p>
                   <p>${order.orderTotal}</p>
                 </Box>
                 <Button

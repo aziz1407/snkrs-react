@@ -42,7 +42,7 @@ export default function Products(props: ProductsProps) {
     page: 1,
     limit: 8,
     order: "createdAt",
-    productCollection: ProductCollection.DISH,
+    productCollection: ProductCollection.MIX,
     search: "",
   });
 
@@ -170,76 +170,76 @@ export default function Products(props: ProductsProps) {
           <Stack className={"list-category-section"}>
             <Stack className={"product-category"}>
               <div className="category-main">
-                <Button
+              <Button
                   variant={"contained"}
                   color={
-                    productSearch.productCollection === ProductCollection.DISH
+                    productSearch.productCollection === ProductCollection.MIX
                       ? "primary"
                       : "secondary"
                   }
                   className={"btns"}
                   onClick={() =>
-                    searchCollectionHandler(ProductCollection.DISH)
+                    searchCollectionHandler(ProductCollection.MIX)
                   }
                 >
-                  Meals
+                  Mix
                 </Button>
                 <Button
                   variant={"contained"}
                   color={
-                    productSearch.productCollection === ProductCollection.SALAD
+                    productSearch.productCollection === ProductCollection.NIKE
                       ? "primary"
                       : "secondary"
                   }
                   className={"btns"}
                   onClick={() =>
-                    searchCollectionHandler(ProductCollection.SALAD)
+                    searchCollectionHandler(ProductCollection.NIKE)
                   }
                 >
-                  Salad
+                  Nike
                 </Button>
                 <Button
                   variant={"contained"}
                   color={
-                    productSearch.productCollection === ProductCollection.DRINK
+                    productSearch.productCollection === ProductCollection.ADIDAS
                       ? "primary"
                       : "secondary"
                   }
                   className={"btns"}
                   onClick={() =>
-                    searchCollectionHandler(ProductCollection.DRINK)
+                    searchCollectionHandler(ProductCollection.ADIDAS)
                   }
                 >
-                  Drinks
+                  Adidas
+                </Button>
+                <Button
+                  variant={"contained"}
+                  color={
+                    productSearch.productCollection === ProductCollection.PUMA
+                      ? "primary"
+                      : "secondary"
+                  }
+                  className={"btns"}
+                  onClick={() =>
+                    searchCollectionHandler(ProductCollection.PUMA)
+                  }
+                >
+                  Puma
                 </Button>
                 <Button
                   variant={"contained"}
                   color={
                     productSearch.productCollection ===
-                    ProductCollection.DESSERT
+                    ProductCollection.NEW_BALANCE
                       ? "primary"
                       : "secondary"
                   }
                   className={"btns"}
                   onClick={() =>
-                    searchCollectionHandler(ProductCollection.DESSERT)
+                    searchCollectionHandler(ProductCollection.NEW_BALANCE)
                   }
                 >
-                  Dessert
-                </Button>
-                <Button
-                  variant={"contained"}
-                  color={
-                    productSearch.productCollection === ProductCollection.OTHER
-                      ? "primary"
-                      : "secondary"
-                  }
-                  className={"btns"}
-                  onClick={() =>
-                    searchCollectionHandler(ProductCollection.OTHER)
-                  }
-                >
-                  Other
+                  NB
                 </Button>
               </div>
 
@@ -248,10 +248,6 @@ export default function Products(props: ProductsProps) {
                   {products.length !== 0 ? (
                     products.map((product: Product) => {
                       const imagePath = `${serverApi}/${product.productImages[0]}`;
-                      const sizeVolume =
-                        product.productCollection === ProductCollection.DRINK
-                          ? product.productVolume + "litre"
-                          : product.productSize + "size";
                       return (
                         <Card
                           key={product._id}
@@ -261,7 +257,7 @@ export default function Products(props: ProductsProps) {
                         >
                           <CardOverflow>
                             <div className="hover-container">
-                              <div className="product-sale">{sizeVolume}</div>
+                              {/* <div className="product-sale">{sizeVolume}</div> */}
                               <AspectRatio ratio="1">
                                 <img
                                   src={imagePath}

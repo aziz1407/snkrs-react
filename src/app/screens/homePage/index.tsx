@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Statistics from "./Statistics";
 import PopularDishes from "./PopularDishes";
-import NewDishes from "./NewDishes";
+import NewArrival from "./NewArrival";
 import Advertisement from "./Advertisement";
 import ActiveUsers from "./ActiveUsers";
 import Events from "./Events";
@@ -36,7 +36,7 @@ export default function HomePage() {
         page: 1,
         limit: 4,
         order: "productViews",
-        productCollection: ProductCollection.DISH,
+        productCollection: ProductCollection.MIX,
       })
       .then((data) => setPopularDishes(data)) //where data gets loaded to store
       .catch((err) => console.log(err));
@@ -58,19 +58,20 @@ export default function HomePage() {
       .catch((err) => console.log(err));
   }, []);
 
-  const theme = useTheme()
+  const theme = useTheme();
 
   return (
     <Box
-    sx={{
-      backgroundColor: theme.palette.background.default, 
-      color: theme.palette.text.primary, 
-      padding: 2,
-    }} className={"homepage"}
-  >
-      <PopularDishes />
+      sx={{
+        backgroundColor: theme.palette.background.default,
+        color: theme.palette.text.primary,
+        padding: 2,
+      }}
+      className={"homepage"}
+    >
+      <NewArrival />
       <Advertisement />
-      <NewDishes />
+      <PopularDishes />
       <Statistics />
       <ActiveUsers />
       <Events />
