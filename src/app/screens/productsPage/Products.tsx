@@ -1,13 +1,24 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
-import { Box, Container, InputBase, Stack } from "@mui/material";
-import Button from "@mui/material/Button"; // MUI Button
+import {
+  Box,
+  Container,
+  InputBase,
+  Stack,
+  Popover,
+  Divider,
+  Checkbox,
+  FormGroup,
+  FormControlLabel,
+} from "@mui/material";
+import Button from "@mui/material/Button";
 import SearchIcon from "@mui/icons-material/Search";
+import FilterListIcon from "@mui/icons-material/FilterList";
+import SortIcon from "@mui/icons-material/Sort";
 import Pagination from "@mui/material/Pagination";
-import Typography from "@mui/joy/Typography";
-import { CssVarsProvider } from "@mui/joy/styles/CssVarsProvider";
-import CardOverflow from "@mui/joy/CardOverflow";
-import AspectRatio from "@mui/joy/AspectRatio";
-import Card from "@mui/joy/Card";
+import Typography from "@mui/material/Typography";
+import CircleIcon from "@mui/icons-material/Circle";
+import CloseIcon from "@mui/icons-material/Close";
+import IconButton from "@mui/material/IconButton";
 
 import { Product, ProductInquiry } from "../../../lib/data/types/product";
 import { Dispatch } from "@reduxjs/toolkit";
@@ -42,12 +53,23 @@ export default function Products(props: ProductsProps) {
     page: 1,
     limit: 8,
     order: "createdAt",
-    productCollection: ProductCollection.MIX,
+    productCollection: ProductCollection.NIKE,
     search: "",
   });
 
+  // Demo colors for products - in real app these would come from the API
+  const demoColors = {
+    nike: ["#FF0000", "#000000", "#FFFFFF", "#0000FF", "#00FF00"],
+    adidas: ["#000000", "#FFFFFF", "#0000FF", "#FF0000", "#FFFF00"],
+    puma: ["#000000", "#FFFFFF", "#808080", "#FFA500", "#800080"],
+    new_balance: ["#000000", "#FFFFFF", "#A52A2A", "#008000", "#FFC0CB"],
+  };
+
   const [searchText, setSearchText] = useState<string>("");
   const history = useHistory();
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+
+  const [activeCategory, setActiveCategory] = useState("Sneakers");
 
   useEffect(() => {
     const product = new ProductService();
@@ -65,11 +87,10 @@ export default function Products(props: ProductsProps) {
   }, [searchText]);
 
   /** HANDLERS **/
-
   const searchCollectionHandler = (collection: ProductCollection) => {
-    productSearch.page = 1; //always stays on page 1
+    productSearch.page = 1;
     productSearch.productCollection = collection;
-    setProductSearch({ ...productSearch }); //new ref:
+    setProductSearch({ ...productSearch });
   };
 
   const searchOrderHandler = (order: string) => {
@@ -92,239 +113,339 @@ export default function Products(props: ProductsProps) {
     history.push(`/products/${id}`);
   };
 
+  const handleFilterClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  // Get brand name for display
+  const getBrandDisplayName = (collection: ProductCollection) => {
+    switch (collection) {
+      case ProductCollection.NIKE:
+        return "Nike";
+      case ProductCollection.ADIDAS:
+        return "Adidas";
+      case ProductCollection.PUMA:
+        return "Puma";
+      case ProductCollection.NEW_BALANCE:
+        return "New Balance";
+      default:
+        return "All Brands";
+    }
+  };
+
+  // Get color array based on brand
+  const getColorsByBrand = (brand: string) => {
+    const lowerBrand = brand.toLowerCase();
+    if (lowerBrand.includes("nike")) return demoColors.nike;
+    if (lowerBrand.includes("adidas")) return demoColors.adidas;
+    if (lowerBrand.includes("puma")) return demoColors.puma;
+    if (lowerBrand.includes("new balance") || lowerBrand.includes("nb"))
+      return demoColors.new_balance;
+    return demoColors.nike; // Default
+  };
+
   return (
-    <div className={"products"}>
-      <Container>
-        <Stack className={"avatar-big-box"}>
-          <Stack className="container-top">
-            <Typography className="container-top-text">
-              Burak Restaurant
-            </Typography>
-            <Stack className="search-bar">
-              <InputBase
-                className="input-text"
-                placeholder="Type here"
-                value={searchText}
-                onChange={(e) => setSearchText(e.target.value)}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter") searchProductHandler();
-                }}
-              />
-              <Button
-                className="for-btn"
-                endIcon={<SearchIcon />}
-                variant="contained"
-                onClick={searchProductHandler}
-                style={{
-                  height: "25px",
-                  borderRadius: "18px",
-                  backgroundColor: "#D7B586;",
-                  color: "#gold",
-                  fontSize: "10px",
-                }}
-              >
-                Search
-              </Button>
-            </Stack>
-          </Stack>
+    <div className="products-page">
+      <Container maxWidth="xl">
+        <Box
+          className="category-navigation"
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            flexWrap: "wrap",
+            gap: 2,
+            mb: 3,
+          }}
+        >
+          <Button
+            variant="contained"
+            startIcon={<FilterListIcon />}
+            className="filter-sort-btn"
+            onClick={handleFilterClick}
+            disableElevation
+          >
+            FILTER & SORT
+          </Button>
 
-          <Stack className={"dishes-filter-section"}>
-            <Stack className="dishes-filter-box">
-              <Button
-                variant={"contained"}
-                className={"order"}
-                color={
-                  productSearch.order === "createdAt" ? "primary" : "secondary"
-                }
-                onClick={() => searchOrderHandler("createdAt")}
-              >
-                New
-              </Button>
-              <Button
-                variant={"contained"}
-                className={"order"}
-                color={
-                  productSearch.order === "productPrice"
-                    ? "primary"
-                    : "secondary"
-                }
-                onClick={() => searchOrderHandler("productPrice")}
-              >
-                Price
-              </Button>
-              <Button
-                variant={"contained"}
-                className={"order"}
-                color={
-                  productSearch.order === "productViews"
-                    ? "primary"
-                    : "secondary"
-                }
-                onClick={() => searchOrderHandler("productViews")}
-              >
-                Views
-              </Button>
-            </Stack>
-          </Stack>
+          <Box sx={{ flexGrow: 1 }} />
 
-          <Stack className={"list-category-section"}>
-            <Stack className={"product-category"}>
-              <div className="category-main">
-              <Button
-                  variant={"contained"}
-                  color={
-                    productSearch.productCollection === ProductCollection.MIX
-                      ? "primary"
-                      : "secondary"
-                  }
-                  className={"btns"}
-                  onClick={() =>
-                    searchCollectionHandler(ProductCollection.MIX)
-                  }
-                >
-                  Mix
-                </Button>
-                <Button
-                  variant={"contained"}
-                  color={
-                    productSearch.productCollection === ProductCollection.NIKE
-                      ? "primary"
-                      : "secondary"
-                  }
-                  className={"btns"}
-                  onClick={() =>
-                    searchCollectionHandler(ProductCollection.NIKE)
-                  }
-                >
-                  Nike
-                </Button>
-                <Button
-                  variant={"contained"}
-                  color={
-                    productSearch.productCollection === ProductCollection.ADIDAS
-                      ? "primary"
-                      : "secondary"
-                  }
-                  className={"btns"}
-                  onClick={() =>
-                    searchCollectionHandler(ProductCollection.ADIDAS)
-                  }
-                >
-                  Adidas
-                </Button>
-                <Button
-                  variant={"contained"}
-                  color={
-                    productSearch.productCollection === ProductCollection.PUMA
-                      ? "primary"
-                      : "secondary"
-                  }
-                  className={"btns"}
-                  onClick={() =>
-                    searchCollectionHandler(ProductCollection.PUMA)
-                  }
-                >
-                  Puma
-                </Button>
-                <Button
-                  variant={"contained"}
-                  color={
-                    productSearch.productCollection ===
-                    ProductCollection.NEW_BALANCE
-                      ? "primary"
-                      : "secondary"
-                  }
-                  className={"btns"}
-                  onClick={() =>
-                    searchCollectionHandler(ProductCollection.NEW_BALANCE)
-                  }
-                >
-                  NB
-                </Button>
-              </div>
-
-              <Stack className={"meals-list"}>
-                <CssVarsProvider>
-                  {products.length !== 0 ? (
-                    products.map((product: Product) => {
-                      const imagePath = `${serverApi}/${product.productImages[0]}`;
-                      return (
-                        <Card
-                          key={product._id}
-                          variant="outlined"
-                          className="card"
-                          onClick={() => chooseDishHandler(product._id)}
-                        >
-                          <CardOverflow>
-                            <div className="hover-container">
-                              {/* <div className="product-sale">{sizeVolume}</div> */}
-                              <AspectRatio ratio="1">
-                                <img
-                                  src={imagePath}
-                                  alt=""
-                                  style={{ borderRadius: "0px 50px 0px 0px" }}
-                                />
-                              </AspectRatio>
-                              <button
-                                className="shop-btn"
-                                onClick={(e) => {
-                                  onAdd({
-                                    _id: product._id,
-                                    quantity: 1,
-                                    name: product.productName,
-                                    price: product.productPrice,
-                                    image: product.productImages[0],
-                                  });
-                                  e.stopPropagation();
-                                }}
-                              >
-                                <img
-                                  src="/icons/shopping-cart.svg"
-                                  style={{ display: "flex" }}
-                                />
-                              </button>
-                              <Box className="removedredeye-btn">
-                                {product.productViews}
-                                <img src="/icons/eye.svg" />
-                              </Box>
-                            </div>
-                          </CardOverflow>
-                          <Typography className="title">
-                            {product.productName}
-                          </Typography>
-                          <Stack className="product-desc">
-                            <Box className="price-icon">
-                              <img src="/icons/dollar.png" alt="" />
-                            </Box>
-                            <Typography className="price">
-                              {product.productPrice}
-                            </Typography>
-                          </Stack>
-                        </Card>
-                      );
-                    })
-                  ) : (
-                    <Box className="no-data">
-                      New products are not available!
-                    </Box>
-                  )}
-                </CssVarsProvider>
-              </Stack>
-            </Stack>
-          </Stack>
-          <Stack className={"pagination-section"}>
-            <Pagination
-              count={
-                products.length !== 0
-                  ? productSearch.page + 1
-                  : productSearch.page
-              }
-              page={productSearch.page}
-              color="secondary"
-              onChange={PaginationHandler}
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              border: "1px solid #ccc",
+              borderRadius: "8px",
+              px: 2,
+              py: 0.5,
+              backgroundColor: "#f9f9f9",
+            }}
+          >
+            <InputBase
+              placeholder="Search sneakers..."
+              value={searchText}
+              onChange={(e) => setSearchText(e.target.value)}
+              sx={{ mr: 1, minWidth: "200px" }}
             />
-          </Stack>
-        </Stack>
+            <IconButton onClick={searchProductHandler} size="small">
+              <SearchIcon />
+            </IconButton>
+          </Box>
+        </Box>
+
+        <Popover
+          open={Boolean(anchorEl)}
+          anchorEl={anchorEl}
+          onClose={handleClose}
+          anchorOrigin={{
+            vertical: "bottom",
+            horizontal: "right",
+          }}
+          transformOrigin={{
+            vertical: "top",
+            horizontal: "right",
+          }}
+          className="filter-popover"
+        >
+          <Box className="filter-popover-content">
+            <Box className="filter-header" sx={{ display: "display" }}>
+              <Typography variant="h6" sx={{ justifyContent: "flex-end" }}>
+                Filter & Sort
+              </Typography>
+              <IconButton onClick={handleClose}>
+                <CloseIcon />
+              </IconButton>
+            </Box>
+
+            <Divider />
+
+            <Box className="filter-section">
+              <Typography variant="subtitle1" className="filter-title">
+                Sort By
+              </Typography>
+              <FormGroup>
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={productSearch.order === "createdAt"}
+                      onChange={() => searchOrderHandler("createdAt")}
+                      size="small"
+                    />
+                  }
+                  label="Newest"
+                />
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={productSearch.order === "productPrice"}
+                      onChange={() => searchOrderHandler("productPrice")}
+                      size="small"
+                    />
+                  }
+                  label="Price"
+                />
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={productSearch.order === "productViews"}
+                      onChange={() => searchOrderHandler("productViews")}
+                      size="small"
+                    />
+                  }
+                  label="Most Viewed"
+                />
+              </FormGroup>
+            </Box>
+
+            <Divider />
+
+            <Box className="filter-section">
+              <Typography variant="subtitle1" className="filter-title">
+                Brand
+              </Typography>
+              <FormGroup>
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={
+                        productSearch.productCollection ===
+                        ProductCollection.MIX
+                      }
+                      onChange={() =>
+                        searchCollectionHandler(ProductCollection.MIX)
+                      }
+                      size="small"
+                    />
+                  }
+                  label="All Brands"
+                />
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={
+                        productSearch.productCollection ===
+                        ProductCollection.NIKE
+                      }
+                      onChange={() =>
+                        searchCollectionHandler(ProductCollection.NIKE)
+                      }
+                      size="small"
+                    />
+                  }
+                  label="Nike"
+                />
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={
+                        productSearch.productCollection ===
+                        ProductCollection.ADIDAS
+                      }
+                      onChange={() =>
+                        searchCollectionHandler(ProductCollection.ADIDAS)
+                      }
+                      size="small"
+                    />
+                  }
+                  label="Adidas"
+                />
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={
+                        productSearch.productCollection ===
+                        ProductCollection.PUMA
+                      }
+                      onChange={() =>
+                        searchCollectionHandler(ProductCollection.PUMA)
+                      }
+                      size="small"
+                    />
+                  }
+                  label="Puma"
+                />
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={
+                        productSearch.productCollection ===
+                        ProductCollection.NEW_BALANCE
+                      }
+                      onChange={() =>
+                        searchCollectionHandler(ProductCollection.NEW_BALANCE)
+                      }
+                      size="small"
+                    />
+                  }
+                  label="New Balance"
+                />
+              </FormGroup>
+            </Box>
+          </Box>
+        </Popover>
+
+        <Box className="products-grid">
+          {products.length > 0 ? (
+            products.map((product: Product) => {
+              const imagePath = `${serverApi}/${product.productImages[0]}`;
+              const brandName = getBrandDisplayName(
+                product.productCollection || ProductCollection.MIX
+              );
+              const colors = getColorsByBrand(brandName);
+
+              return (
+                <Box
+                  key={product._id}
+                  className="product-card"
+                  onClick={() => chooseDishHandler(product._id)}
+                >
+                  <Box className="product-image-container">
+                    <img
+                      src={imagePath}
+                      alt={product.productName}
+                      className="product-image"
+                    />
+                    <Button
+                      className="add-to-cart-btn"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onAdd({
+                          _id: product._id,
+                          quantity: 1,
+                          name: product.productName,
+                          price: product.productPrice,
+                          image: product.productImages[0],
+                        });
+                      }}
+                    >
+                      Add to Cart
+                    </Button>
+                  </Box>
+
+                  <Box className="product-info">
+                    <Typography className="product-price">
+                      ${product.productPrice}
+                    </Typography>
+                    <Typography className="product-name">
+                      {product.productName}
+                    </Typography>
+                    <Typography className="product-brand">
+                      {brandName}
+                    </Typography>
+
+                    <Box
+                      className="product-colors"
+                      sx={{ display: "flex", flexDirection: "row" }}
+                    >
+                      {colors.map((color, index) => (
+                        <Box
+                          key={index}
+                          className="color-dot"
+                          style={{ backgroundColor: color }}
+                        />
+                      ))}
+                      <Typography className="color-count">
+                        {colors.length} colors
+                      </Typography>
+                    </Box>
+
+                    <Box className="product-badges">
+                      {product.productViews > 3 && (
+                        <span className="badge best-seller">Best Seller</span>
+                      )}
+                      {new Date(product.createdAt).getTime() >
+                        Date.now() - 30 * 24 * 60 * 60 * 1000 && (
+                        <span className="badge new-arrival">New</span>
+                      )}
+                    </Box>
+                  </Box>
+                </Box>
+              );
+            })
+          ) : (
+            <Box className="no-products">
+              <Typography>No products available</Typography>
+            </Box>
+          )}
+        </Box>
+
+        {/* Pagination */}
+        <Box className="pagination-container">
+          <Pagination
+            count={
+              products.length !== 0
+                ? productSearch.page + 1
+                : productSearch.page
+            }
+            page={productSearch.page}
+            onChange={PaginationHandler}
+            color="primary"
+            shape="rounded"
+          />
+        </Box>
       </Container>
     </div>
   );

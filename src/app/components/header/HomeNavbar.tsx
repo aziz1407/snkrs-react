@@ -106,7 +106,6 @@ export default function HomeNavbar(props: HomeNavbarProps) {
               onDeleteAll={onDeleteAll}
             />
 
-            {/* Toggle Button */}
             <Box sx={{ display: "flex", gap: "12px", alignItems: "center" }}>
               <Button
                 variant="contained"

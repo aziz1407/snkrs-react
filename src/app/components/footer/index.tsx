@@ -136,7 +136,7 @@ export default function Footer() {
           />
 
           <Box className="copyright-txt" textAlign="center">
-            © Copyright Aiden Team, All rights reserved.
+            For the Few Who Know!
           </Box>
         </Stack>
       </Container>

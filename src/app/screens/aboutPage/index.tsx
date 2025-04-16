@@ -158,7 +158,7 @@ export default function AboutPage() {
             flexDirection: "column",
           }}
         >
-          <Typography variant="h4" fontWeight="bold" color="black" mb={4}>
+          <Typography variant="h4" fontWeight="bold" color="black" mb={4} sx={{marginBottom:"55px"}}>
             Review
           </Typography>
 
