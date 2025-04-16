@@ -1,25 +1,21 @@
-import { Box, Container, Stack, useTheme } from "@mui/material";
-import { CssVarsProvider } from "@mui/joy/styles";
-import Card from "@mui/joy/Card";
-import Typography from "@mui/joy/Typography";
-import CardOverflow from "@mui/joy/CardOverflow";
-import AspectRatio from "@mui/joy/AspectRatio";
-import CardContent from "@mui/joy/CardContent/CardContent";
-
+import { Box, Container, Stack } from "@mui/material";
+import {
+  Typography,
+  useTheme,
+} from "@mui/material";
 import { useSelector } from "react-redux";
 import { createSelector } from "reselect";
 import { retrieveTopUsers } from "./selector";
 import { serverApi } from "../../../lib/config";
 import { Member } from "../../../lib/data/types/member";
 
-/** REDUX SLICE & SELECTOR **/
+/** REDUX SELECTOR **/
 const topUsersRetriever = createSelector(retrieveTopUsers, (topUsers) => ({
   topUsers,
 }));
 
 export default function ActiveUsers() {
   const theme = useTheme();
-  const isDark = theme.palette.mode === "dark"; 
   const { topUsers } = useSelector(topUsersRetriever);
 
   return (
@@ -28,82 +24,95 @@ export default function ActiveUsers() {
       sx={{
         width: "100%",
         height: 605,
-        display: "flex",
-        background: theme.palette.background.default, 
+        background: theme.palette.background.default,
+        paddingTop: 6,
       }}
     >
       <Container>
-        <Stack className={"users"} sx={{ marginTop: 45, display: "flex", flexDirection: "column", alignItems: "center" }}>
-          <Box
-            className={"category-title"}
+        <Stack alignItems="center">
+          <Typography
+            className="category-title"
             sx={{
-              fontFamily: "sans-serif",
               fontSize: 36,
               fontWeight: 700,
-              lineHeight: "43px",
               color: theme.palette.text.primary,
+              mb: 4,
             }}
           >
-            Active Users
-          </Box>
+            Top Users
+          </Typography>
+
           <Stack
-            className={"cards-frame"}
+            className="cards-frame"
             sx={{
-              width: "100%",
-              margin: "47px 2px 2px 2px",
+              display: "flex",
               flexDirection: "row",
-              justifyContent: "space-between",
+              flexWrap: "wrap",
+              justifyContent: "center",
+              gap: 4,
             }}
           >
-            <CssVarsProvider>
-              {topUsers.length !== 0 ? (
-                topUsers.map((member: Member) => {
-                  const imagePath = `${serverApi}/${member.memberImage}`;
-                  return (
-                    <Card
-                      key={member._id}
-                      variant="outlined"
+            {topUsers.length !== 0 ? (
+              topUsers.map((member: Member) => {
+                const imagePath = `${serverApi}/${member.memberImage}`;
+                return (
+                  <Box
+                    key={member._id}
+                    sx={{
+                      width: 250,
+                      height: 250,
+                      borderRadius: "50%",
+                      position: "relative",
+                      overflow: "hidden",
+                      cursor: "pointer",
+                      boxShadow: 6,
+                      transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                      "&:hover": {
+                        transform: "scale(1.1)",
+                        boxShadow: "0 4px 20px rgba(0,0,0,0.3)",
+                      },
+                      "&:hover .username": {
+                        opacity: 1,
+                        transform: "translateY(0)",
+                      },
+                    }}
+                  >
+                    <Box
+                      component="img"
+                      src={imagePath}
+                      alt={member.memberNick}
                       sx={{
-                        borderRadius: 3,
-                        boxShadow: 3,
-                        transition: "transform 0.3s ease",
-                        "&:hover": {
-                          transform: "scale(1.05)",
-                          boxShadow: 6,
-                        },
-                        backgroundColor: isDark ? "#1e1e1e" : "#ffffff", // Dark mode support
-                        color: isDark ? "#ffffff" : "#000000", // Text color based on mode
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                        borderRadius: "50%",
+                      }}
+                    />
+                    <Box
+                      className="username"
+                      sx={{
+                        position: "absolute",
+                        bottom: 0,
+                        width: "100%",
+                        textAlign: "center",
+                        background: "rgba(0, 0, 0, 0.6)",
+                        color: "#fff",
+                        fontSize: 14,
+                        fontWeight: 600,
+                        padding: "6px 0",
+                        opacity: 0,
+                        transform: "translateY(20px)",
+                        transition: "all 0.3s ease",
                       }}
                     >
-                      <CardOverflow>
-                        <AspectRatio ratio="1">
-                          <img src={imagePath} alt={member.memberNick} />
-                        </AspectRatio>
-                      </CardOverflow>
-                      <Stack className="title">
-                        <CardContent>
-                          <Typography sx={{ fontWeight: 600, color: theme.palette.text.primary }}>
-                            {member.memberNick}
-                          </Typography>
-                        </CardContent>
-                      </Stack>
-                    </Card>
-                  );
-                })
-              ) : (
-                <Box
-                  className="no-data"
-                  sx={{
-                    fontSize: "1rem",
-                    color: theme.palette.text.secondary,
-                    textAlign: "center",
-                    marginTop: 3,
-                  }}
-                >
-                  Active users are not available!
-                </Box>
-              )}
-            </CssVarsProvider>
+                      {member.memberNick}
+                    </Box>
+                  </Box>
+                );
+              })
+            ) : (
+              <Typography>No active users available</Typography>
+            )}
           </Stack>
         </Stack>
       </Container>

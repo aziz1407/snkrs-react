@@ -6,11 +6,61 @@ import {
   Paper,
   Button,
   Typography,
+  IconButton,
 } from "@mui/material";
 import "../../../css/about.css";
 
 export default function AboutPage() {
   const [showMore, setShowMore] = useState(false);
+
+  const testimonials = [
+    {
+      id: 1,
+      name: "Abdukodir Khusanov",
+      role: "Football player",
+      image: "/img/kusanov.webp",
+      text: `Working with SNKRS was a total game-changer. Their commitment to authenticity and slick style took our expectations to a whole new level.`,
+      stars: 5,
+    },
+    {
+      id: 2,
+      name: "Islam Makhachev",
+      role: "Ufc champion",
+      image: "/img/islam.webp",
+      text: `I respect hard work, and these guys clearly put their heart into this. It's not just a store — it's a whole culture. When I'm not training, I keep it light, and SNKRS keeps me looking sharp.”`,
+      stars: 5,
+    },
+    {
+      id: 3,
+      name: "Lamine Yamal",
+      role: "Football Player",
+      image: "/img/lamine.jpg",
+      text: `SNKRS isn't just a store — it's a movement. From exclusive drops to elite service, they're setting the gold standard for sneaker culture in Central Asia.`,
+      stars: 5,
+    },
+    {
+      id: 4,
+      name: "Israil Madrimov",
+      role: "Professional Boxer",
+      image: "/img/israil.avif",
+      text: `Hands down the best sneaker shop in Central Asia. They know what real style means.`,
+      stars: 5,
+    },
+  ];
+
+  const [testimonialIndex, setTestimonialIndex] = useState(0);
+
+  const handleNext = () => {
+    setTestimonialIndex((prev) => (prev + 1) % testimonials.length);
+  };
+
+  const handlePrev = () => {
+    setTestimonialIndex((prev) =>
+      prev === 0 ? testimonials.length - 1 : prev - 1
+    );
+  };
+
+  const current = testimonials[testimonialIndex];
 
   return (
     <Box className="about-page">
@@ -23,11 +73,11 @@ export default function AboutPage() {
                 align="center"
                 gutterBottom
                 fontWeight="bold"
-                color = "black"
+                color="black"
               >
                 Who are we?
               </Typography>
-              <Typography className="about-text" color = "black">
+              <Typography className="about-text" color="black">
                 Founded on July 14, 2003, in the heart of Andijan, Uzbekistan,
                 our SNKRS store began as a small local sneaker hub and has since
                 grown into a destination for sneaker enthusiasts across the
@@ -69,6 +119,7 @@ export default function AboutPage() {
                   </>
                 )}
               </Typography>
+
               <Box
                 sx={{
                   width: "100%",
@@ -97,7 +148,99 @@ export default function AboutPage() {
           </Stack>
         </Container>
 
-        {/* Brands Logo Section */}
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            paddingTop: 10,
+            paddingBottom: 3,
+            flexDirection: "column",
+          }}
+        >
+          <Typography variant="h4" fontWeight="bold" color="black" mb={4}>
+            Review
+          </Typography>
+
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              maxWidth: "1000px",
+              width: "100%",
+              position: "relative",
+            }}
+          >
+            <IconButton
+              onClick={handlePrev}
+              sx={{
+                position: "absolute",
+                left: "-20px",
+                zIndex: 1,
+                bgcolor: "white",
+                border: "1px solid #ccc",
+              }}
+            >
+              <span style={{ fontSize: "24px" }}>←</span>
+            </IconButton>
+
+            <Paper
+              elevation={3}
+              sx={{
+                display: "flex",
+                p: 3,
+                borderRadius: 4,
+                bgcolor: "white",
+                flexDirection: { xs: "column", md: "row" },
+                alignItems: "center",
+                gap: 3,
+                width: "100%",
+                transition: "all 0.4s ease-in-out",
+              }}
+            >
+              <Box
+                component="img"
+                src={current.image}
+                alt={current.name}
+                sx={{
+                  width: 150,
+                  height: 150,
+                  borderRadius: 3,
+                  objectFit: "cover",
+                }}
+              />
+
+              <Box>
+                <Typography color="black" fontStyle="italic" mb={2}>
+                  “{current.text}”
+                </Typography>
+                <Typography fontWeight="bold" color="black">
+                  {current.name}
+                </Typography>
+                <Typography fontSize="14px" color="gray">
+                  {current.role}
+                </Typography>
+                <Box mt={1} color="#f5a623">
+                  {"⭐".repeat(current.stars)}
+                </Box>
+              </Box>
+            </Paper>
+
+            <IconButton
+              onClick={handleNext}
+              sx={{
+                position: "absolute",
+                right: "-20px",
+                zIndex: 1,
+                bgcolor: "white",
+                border: "1px solid #ccc",
+              }}
+            >
+              <span style={{ fontSize: "24px" }}>→</span>
+            </IconButton>
+          </Box>
+        </Box>
+
         <Box className="brands-logo">
           <h1 style={{ textAlign: "center", color: "black" }}>Partners</h1>
           <Box className="logo-frame">

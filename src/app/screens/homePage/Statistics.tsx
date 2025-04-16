@@ -1,9 +1,10 @@
 import React from "react";
-import { Box, Container, Grid, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import ReplayIcon from "@mui/icons-material/Replay";
 import PaymentIcon from "@mui/icons-material/Payment";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
+import SecurityIcon from "@mui/icons-material/Security";
 
 const infoItems = [
   {
@@ -26,35 +27,69 @@ const infoItems = [
     title: "CONTACT US",
     desc: "If you have any question, feel free to contact.",
   },
+  {
+    icon: <SecurityIcon fontSize="large" sx={{ color: "#dddddd" }} />,
+    title: "SECURE SHOPPING",
+    desc: "Your data and transactions are 100% protected.",
+  },
 ];
 
 export default function Statistics() {
+  const scrollingItems = [...infoItems, ...infoItems]; // Duplicate for endless loop
+
   return (
-    <Box sx={{ py: 6, backgroundColor: "#1a1a1a" }}>
-      <Container>
-        <Grid container spacing={4} justifyContent="center">
-          {infoItems.map((item, index) => (
-            <Grid item xs={12} sm={6} md={3} key={index}>
-              <Box textAlign="center">
-                <Box mb={1}>
-                  {item.icon}
-                </Box>
-                <Typography
-                  variant="subtitle1"
-                  fontWeight="bold"
-                  gutterBottom
-                  sx={{ color: "#fefefe" }} // brighter title
-                >
-                  {item.title}
-                </Typography>
-                <Typography variant="body2" sx={{ color: "#cccccc" }}>
-                  {item.desc}
-                </Typography>
-              </Box>
-            </Grid>
-          ))}
-        </Grid>
-      </Container>
+    <Box
+      sx={{
+        overflow: "hidden",
+        backgroundColor: "#1a1a1a",
+        py: 4,
+        position: "relative",
+      }}
+    >
+      <Box
+        sx={{
+          display: "flex",
+          width: "max-content",
+          animation: "scrollLeft 20s linear infinite",
+        }}
+      >
+        {scrollingItems.map((item, index) => (
+          <Box
+            key={index}
+            sx={{
+              minWidth: 280,
+              px: 3,
+              textAlign: "center",
+            }}
+          >
+            <Box mb={1}>{item.icon}</Box>
+            <Typography
+              variant="subtitle1"
+              fontWeight="bold"
+              gutterBottom
+              sx={{ color: "#fefefe" }}
+            >
+              {item.title}
+            </Typography>
+            <Typography variant="body2" sx={{ color: "#cccccc" }}>
+              {item.desc}
+            </Typography>
+          </Box>
+        ))}
+      </Box>
+
+      <style>
+        {`
+          @keyframes scrollLeft {
+            0% {
+              transform: translateX(0);
+            }
+            100% {
+              transform: translateX(-50%);
+            }
+          }
+        `}
+      </style>
     </Box>
   );
 }

@@ -1,24 +1,32 @@
 import React from "react";
-import { Box, Container, Stack, Card, CardContent, CardMedia, Typography } from "@mui/material";
+import {
+  Box,
+  Container,
+  Stack,
+  Card,
+  CardMedia,
+  CardContent,
+  Typography,
+} from "@mui/material";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import Divider from "../../components/divider";
 import { useSelector } from "react-redux";
 import { createSelector } from "reselect";
-import { retrieveNewDishes } from "./selector";
+import { retrievePopularDishes } from "./selector";
 import { Product } from "../../../lib/data/types/product";
 import { serverApi } from "../../../lib/config";
-import { ProductCollection } from "../../../lib/data/enums/product.enum";
-import { useHistory } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
+import { useHistory } from "react-router-dom";
 
-const newDishesRetriever = createSelector(retrieveNewDishes, (newDishes) => ({
-  newDishes,
-}));
+const popularDishesRetriever = createSelector(
+  retrievePopularDishes,
+  (popularDishes) => ({ popularDishes })
+);
 
-export default function NewArrival() {
+export default function Trending() {
+  const { popularDishes } = useSelector(popularDishesRetriever);
   const theme = useTheme();
   const isDark = theme.palette.mode === "dark";
-  const { newDishes } = useSelector(newDishesRetriever);
   const history = useHistory();
 
   const handleCardClick = (productId: string) => {
@@ -27,13 +35,15 @@ export default function NewArrival() {
 
   return (
     <Stack
-      className="new-products-frame"
+      className="popular-dishes-frame"
       sx={{
         width: "100%",
         display: "flex",
         background: theme.palette.background.default,
         paddingY: 8,
-        alignItems: "center",
+        marginBottom: 10,
+        marginTop: "20px",
+        overflow: "visible",
       }}
     >
       <Container maxWidth="xl">
@@ -56,7 +66,7 @@ export default function NewArrival() {
               mb: 4,
             }}
           >
-            New Drops
+           Trending
           </Box>
           <Stack
             className="cards-frame"
@@ -65,8 +75,8 @@ export default function NewArrival() {
             flexWrap="wrap"
             justifyContent="center"
           >
-            {newDishes.length !== 0 ? (
-              newDishes.map((product: Product) => {
+            {popularDishes.length !== 0 ? (
+              popularDishes.map((product: Product) => {
                 const imagePath = `${serverApi}/${product.productImages[0]}`;
                 return (
                   <Card
@@ -74,6 +84,8 @@ export default function NewArrival() {
                     variant="outlined"
                     className="card"
                     sx={{
+                      width: 335,
+                      height: 350,
                       borderRadius: 4,
                       boxShadow: isDark ? 4 : 2,
                       transition: "transform 0.3s ease",
@@ -82,6 +94,7 @@ export default function NewArrival() {
                       display: "flex",
                       flexDirection: "column",
                       justifyContent: "space-between",
+                      position: "relative", 
                       "&:hover": {
                         transform: "scale(1.03)",
                         boxShadow: 6,
@@ -105,19 +118,19 @@ export default function NewArrival() {
                         fontWeight: 600,
                       }}
                     >
-                      {product.productSize}
+                      {product.productLeftCount} left
                     </Box>
                     <CardMedia
                       component="img"
                       image={imagePath}
                       alt={product.productName}
                       sx={{
-                        height: "350px",
+                        height: "85%",
                         objectFit: "cover",
                         borderRadius: 1,
                       }}
                     />
-                   <CardContent
+                    <CardContent
                       className="product-detail"
                       sx={{
                         backgroundColor: isDark ? "#111" : "#f9f9f9",
@@ -167,7 +180,7 @@ export default function NewArrival() {
                   marginTop: 3,
                 }}
               >
-                New products are not available!
+                Popular dishes are not available!
               </Box>
             )}
           </Stack>

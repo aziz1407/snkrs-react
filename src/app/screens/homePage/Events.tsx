@@ -1,7 +1,8 @@
-import { Box, Typography, useTheme } from "@mui/material";
+import { Box } from "@mui/material";
 import { useHistory } from "react-router-dom";
 import { motion, useAnimation } from "framer-motion";
 import { useEffect, useRef } from "react";
+import { useTheme } from "@mui/material/styles";
 
 const eventData = [
   { id: 1, img: "/img/event5.png" },
@@ -36,7 +37,7 @@ export default function Events() {
 
   return (
     <Box className="events-section" sx={{ backgroundColor: theme.palette.background.default }}>
-      <h2 className="events-title" style={{fontStyle: "sans-serif"}}>Explore More</h2>
+      <h2 className="events-title" style={{fontStyle: "sans-serif", marginBottom: "50px"}}>Explore More</h2>
 
       <motion.div ref={wrapperRef} className="carousel-outer">
         <motion.div

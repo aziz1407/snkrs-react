@@ -1,206 +1,162 @@
 .homepage {
     width: 100%;
     height: auto;
-}
-
-.homepage .static-frame {
+  }
+  
+  /* STATIC FRAME */
+  .homepage .static-frame {
     width: 100%;
     height: 236px;
     background: #343434;
-}
-
-.homepage .static-frame .info {
+  }
+  
+  .homepage .static-frame .info {
     height: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-}
-
-.homepage .static-frame .info .static-box {
+  }
+  
+  .homepage .static-frame .static-box {
     width: 200px;
     height: 116px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
-
-.homepage .static-frame .info .static-box .static-num {
+  }
+  
+  .homepage .static-frame .static-box .static-num {
     text-align: center;
     font-family: sans-serif;
     font-size: 54px;
-    font-style: normal;
     font-weight: 600;
     line-height: 80px;
     color: #D7B686;
-}
-
-.homepage .static-frame .info .static-box .static-desc {
+  }
+  
+  .homepage .static-frame .static-box .static-desc {
     text-align: center;
     font-family: sans-serif;
     font-size: 20px;
-    font-style: normal;
     font-weight: 500;
     line-height: 30px;
     color: #D7B586;
-}
-
-/* POPULAR DISHES */
-.homepage .popular-dishes-frame {
+  }
+  
+  /* NEW PRODUCTS */
+  .homepage .new-products-frame {
     width: 100%;
-    height: 580px;
+    height: 550px;
     display: flex;
-}
-
-.homepage .popular-dishes-frame .popular-section {
+    align-items: center;
+  }
+  
+  .homepage .main {
     margin-top: 45px;
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-
-.homepage .popular-dishes-frame .popular-section .cards-frame {
-    margin-top: 43px;
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-.homepage .popular-dishes-frame .cards-frame .card {
-    min-height: 430px;
-    min-width: 300px;
-    cursor: pointer;
-}
-
-.homepage .popular-dishes-frame .cards-frame .card .card-cover {
-    background: linear-gradient(
-        to top,
-        rgba(0, 0, 0, 0.4),
-        rgba(0, 0, 0, 0) 200px
-    ),
-    linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0) 300px)
-}
-
-.homepage .new-products-frame .no-data {
-    width: 100%;
-    height: 300px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-transform: capitalize;
-    font-family: "Poppins";
-    font-style: normal;
-    font-weight: 400;
-    font-size: 30px;
-    line-height: 34px;
-    color: #e3c08d;
-}
-
-/* NEW PRODUCTS FRAME */
-
-.homepage .new-products-frame {
-    width: 100%;
-    height: 605px;
-    display: flex;
-}
-
-.homepage .main {
-    margin-top: 45px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.homepage .main .category-title {
+  }
+  
+  .homepage .main .category-title {
     margin-top: -50px;
-}
-
-
-.homepage .new-products-frame .cards-frame {
-    width: 100%;
-    margin: 47px 2px 2px 2px;
-    flex-direction: row;
-    justify-content: space-between; 
-    flex-wrap: wrap;   
-}
-
-.homepage .new-products-frame .card {
+  }
+  
+  .homepage .cards-frame {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    scrollbar-width: none;
+  }
+  
+  .homepage .cards-frame::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .homepage .new-products-frame .card {
     height: 400px;
     width: 350px;
+    margin: 0 10px;
     cursor: pointer;
-}
-
-.homepage .new-products-frame .product-sale {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    transition: transform 0.3s ease;
+  }
+  
+  .homepage .new-products-frame .card:hover {
+    transform: scale(1.03);
+    box-shadow: 4px 6px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  .homepage .new-products-frame .product-sale {
     position: absolute;
-    margin-top: 10px;
+    top: 10px;
+    left: 10px;
     z-index: 100;
-    width: 50px;
+    width: 30px;
     height: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
     background: skyblue;
-    box-shadow: 4px 6px 20px rgba(0, 0, 0, 0,1);
     border-radius: 25px;
-    text-align: center;
+    box-shadow: 4px 6px 20px rgba(0, 0, 0, 0.1);
     font-family: "Poppins";
     font-size: 12px;
-    font-style: normal;
     font-weight: 600;
-    line-height: 21px;
     color: #F8F8FF;
-}
-
-.homepage .new-products-frame .product-detail {
-    width: auto;
+  }
+  
+  .homepage .new-products-frame .product-detail {
+    width: 100%;
     height: 49%;
+    margin-top: -12px;
+    padding: 12px;
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin-top: -12px;
-    border-top: 1px solid;
-    border-color: #f8f8ff;
-    background-color: #fafbfb;
-}
-
-.homepage .new-products-frame .product-detail .info {
+    border-top: 1px solid #f8f8ff;
+  }
+  
+  .homepage .new-products-frame .product-detail .info {
     width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-}
-
-.homepage .new-products-frame .product-detail .title {
-    display: flex;
+  }
+  
+  .homepage .new-products-frame .product-detail .title {
+    flex-grow: 1;
     margin-right: 10px;
-    width: 65px;
-    font-weight: 500;
-}
-
-
-.homepage .new-products-frame .product-detail .price {
-    margin-left: 10px;
-    width: 20px;
-    font-weight: 500;
-}
-
-.homepage .new-products-frame .product-detail .divider {
-    margin: 0 10px 0 10px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  
+  .homepage .new-products-frame .product-detail .price {
+    margin-left: 185px;
+    font-size: 16px;
+    font-weight: 600;
+  }
+  
+  .homepage .new-products-frame .product-detail .divider {
     width: 2px;
+    margin: 0 10px;
     background-color: #d9d9d9;
-}
-
-.homepage .new-products-frame .product-detail .views {
+  }
+  
+  .homepage .new-products-frame .product-detail .views {
     display: flex;
     align-items: center;
+    font-size: 14px;
     font-weight: 500;
-}
-
-.homepage .popular-dishes-frame .no-data {
+    color: #777;
+  }
+  
+  .homepage .new-products-frame .no-data {
     width: 100%;
     height: 300px;
     display: flex;
@@ -208,113 +164,204 @@
     align-items: center;
     text-transform: capitalize;
     font-family: "Poppins";
-    font-style: normal;
     font-weight: 400;
     font-size: 30px;
-    line-height: 34px;
     color: #e3c08d;
-}
-
-.homepage .ads-restaurant-frame {
+    line-height: 34px;
+  }
+  
+  /* POPULAR DISHES */
+  .homepage .popular-dishes-frame {
+    width: 100%;
+    height: 580px;
+    display: flex;
+  }
+  
+  .homepage .popular-dishes-frame .popular-section {
+    margin-top: 45px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .homepage .popular-dishes-frame .popular-section .cards-frame {
+    margin-top: 43px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  
+  .homepage .popular-dishes-frame .cards-frame .card {
+    height: 400px;
+    width: 350px;
+    cursor: pointer;
+  }
+  
+  .homepage .popular-dishes-frame .cards-frame .card .card-cover {
+    background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.4),
+        rgba(0, 0, 0, 0) 200px
+      ),
+      linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0) 300px);
+  }
+  
+  .homepage .popular-dishes-frame .no-data {
+    width: 100%;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: capitalize;
+    font-family: "Poppins";
+    font-weight: 400;
+    font-size: 30px;
+    color: #e3c08d;
+    line-height: 34px;
+  }
+  
+  /* ADS VIDEO */
+  .homepage .ads-restaurant-frame {
     margin-top: 70px;
     width: 100%;
     height: 693px;
     display: flex;
     overflow: hidden;
-    transform: perspective(0px);
     box-shadow: -3px 0px 20px 14px #34343480;
-}
-
-.homepage .ads-restaurant-frame .ads-video {
+  }
+  
+  .homepage .ads-restaurant-frame .ads-video {
     width: 100%;
     background: #0c0e12;
     display: flex;
-    box-shadow: 0px -8px 90px rgb(215 215 255);
-    transform: scale(1.5);
     overflow: hidden;
-}
-
-/* ACTIVE USERS */
-.homepage .active-users-frame {
+    transform: scale(1.5);
+    box-shadow: 0px -8px 90px rgb(215 215 255);
+  }
+  
+  /* ACTIVE USERS */
+  .homepage .active-users-frame {
     width: 100%;
     height: 550px;
     display: flex;
-    
-}
-
-.homepage .active-users-frame .users {
+    background: var(--background-color);
+  }
+  
+  .homepage .active-users-frame .users {
     margin-top: 93px;
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-.homepage .active-users-frame .cards-frame {
+  }
+  
+  .homepage .active-users-frame .category-title {
+    margin-bottom: 3rem;
+    font-family: "Poppins", sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 43px;
+    color: var(--text-primary);
+  }
+  
+  .homepage .active-users-frame .cards-frame {
     width: 100%;
     margin-top: 57px;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;    
-}
-
-.homepage .active-users-frame .cards-frame .card {
-    min-width: 305px;
-    min-height: 302px;
-    cursor: pointer;
-}
-
-
-.homepage .active-users-frame .users .cards-frame .card .title {
-    display: flex;
     justify-content: center;
-    text-align: center;
-    font-family: sans-serif;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-}
-
-
-.homepage .active-users-frame .no-data {
+    flex-wrap: wrap;
+    gap: 3rem;
+  }
+  
+  .homepage .active-users-frame .card {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    background-color: var(--card-bg, #fff);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .homepage .active-users-frame .card:hover {
+    transform: scale(1.08);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.2);
+  }
+  
+  .homepage .active-users-frame .card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+  }
+  
+  .homepage .active-users-frame .card:hover img {
+    transform: scale(1.05);
+  }
+  
+  .homepage .active-users-frame .card .title {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 8px 0;
+    background: rgba(0, 0, 0, 0.6);
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    color: #fff;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+    z-index: 1;
+  }
+  
+  .homepage .active-users-frame .card:hover .title {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .homepage .active-users-frame .no-data {
     width: 100%;
     height: 300px;
     display: flex;
     justify-content: center;
     align-items: center;
     text-transform: capitalize;
-    font-family: "Poppins";
-    font-style: normal;
+    font-family: "Poppins", sans-serif;
     font-weight: 400;
     font-size: 30px;
+    color: var(--text-secondary);
     line-height: 34px;
-    color: #e3c08d;
-}
-
-/** EVENTS **/
-
-.events-section {
-    padding: 20px 10px; 
-    background-color: #f3f4f5;
+    text-align: center;
+  }
+  
+  /* EVENTS */
+  .homepage .events-section {
+    padding: 20px 10px;
     overflow: hidden;
     margin-bottom: 40px;
   }
   
-  .events-title {
+  .homepage .events-section .events-title {
     font-size: 36px;
     font-weight: 700;
     text-align: center;
-    margin: 0 0 20px 0;
+    margin-bottom: 20px;
     letter-spacing: -0.5px;
     transition: transform 0.3s ease, text-shadow 0.3s ease;
   }
-
-  .event-cards {
+  
+  .homepage .events-section .event-cards {
     display: flex;
     gap: 24px;
     width: max-content;
   }
   
-  .event-img-only {
+  .homepage .events-section .event-img-only {
     width: 430px;
     height: 430px;
     flex-shrink: 0;
@@ -326,17 +373,8 @@
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
   }
   
-  .event-img-only:hover {
+  .homepage .events-section .event-img-only:hover {
     transform: scale(1.05);
     filter: brightness(1.1);
   }
-  
-
-
-
-
-
-  
-
-
   

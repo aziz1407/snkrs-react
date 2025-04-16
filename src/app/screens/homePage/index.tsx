@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import Statistics from "./Statistics";
-import PopularDishes from "./PopularDishes";
 import NewArrival from "./NewArrival";
 import Advertisement from "./Advertisement";
 import ActiveUsers from "./ActiveUsers";
@@ -10,11 +9,12 @@ import { Dispatch } from "@reduxjs/toolkit";
 import { setPopularDishes, setNewDishes, setTopUsers } from "./slice";
 import { Product } from "../../../lib/data/types/product";
 import ProductService from "../../../app/services/ProductService";
-import { ProductCollection } from "../../../lib/data/enums/product.enum";
 import "../../../css/home.css";
 import MemberService from "../../../app/services/MemberService";
 import { Member } from "../../../lib/data/types/member";
 import { Box, useTheme } from "@mui/material";
+import Trending from "./Trending";
+import { ProductCollection } from "../../../lib/data/enums/product.enum";
 
 /** REDUX SLICE & SELECTOR **/
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -36,7 +36,8 @@ export default function HomePage() {
         page: 1,
         limit: 4,
         order: "productViews",
-        productCollection: ProductCollection.MIX,
+        productCollection: ProductCollection.NIKE,
+
       })
       .then((data) => setPopularDishes(data)) //where data gets loaded to store
       .catch((err) => console.log(err));
@@ -71,7 +72,7 @@ export default function HomePage() {
     >
       <NewArrival />
       <Advertisement />
-      <PopularDishes />
+      <Trending />
       <Statistics />
       <ActiveUsers />
       <Events />
