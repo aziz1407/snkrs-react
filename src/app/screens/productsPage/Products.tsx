@@ -188,6 +188,11 @@ export default function Products(props: ProductsProps) {
               placeholder="Search sneakers..."
               value={searchText}
               onChange={(e) => setSearchText(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  searchProductHandler();
+                }
+              }}
               sx={{ mr: 1, minWidth: "200px" }}
             />
             <IconButton onClick={searchProductHandler} size="small">
@@ -413,7 +418,7 @@ export default function Products(props: ProductsProps) {
                     </Box>
 
                     <Box className="product-badges">
-                      {product.productViews > 3 && (
+                      {product.productViews > 1 && (
                         <span className="badge best-seller">Best Seller</span>
                       )}
                       {new Date(product.createdAt).getTime() >
