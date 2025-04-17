@@ -20,6 +20,8 @@ export default function Events() {
   
 
   useEffect(() => {
+    if (!wrapperRef.current) return;
+  
     const interval = setInterval(() => {
       controls.start({
         x: "-25%",
@@ -31,7 +33,7 @@ export default function Events() {
         });
       });
     }, 10000);
-
+  
     return () => clearInterval(interval);
   }, [controls]);
 

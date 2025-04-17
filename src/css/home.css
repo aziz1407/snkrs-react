@@ -498,7 +498,7 @@
   
   .homepage .active-users-frame .cards-frame {
     width: 100%;
-    margin-top: 40px;
+    margin-top: 20px;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
