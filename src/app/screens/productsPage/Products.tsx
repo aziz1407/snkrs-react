@@ -448,6 +448,7 @@ export default function Products(props: ProductsProps) {
             onChange={PaginationHandler}
             color="primary"
             shape="rounded"
+            sx={{background: "grey", borderRadius: "3px"}}
           />
         </Box>
       </Container>

@@ -2,7 +2,7 @@ import {createSlice} from "@reduxjs/toolkit";
 import { ProductsPageState } from "../../../lib/data/types/screen";
 
 const initialState: ProductsPageState = {
-    restaurant: null,
+    admin: null,
     chosenProduct: null,
     products: []
 }
@@ -12,7 +12,7 @@ const productsPageSlice = createSlice({
     initialState,
     reducers: {
         setRestaurant: (state, action) => {
-            state.restaurant = action.payload;
+            state.admin = action.payload;
         },
         setChosenProduct: (state, action) => {
             state.chosenProduct = action.payload;

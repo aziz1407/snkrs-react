@@ -79,11 +79,11 @@ export default function OrdersPage() {
                 value={value}
                 onChange={handleChange}
                 aria-label="basic-tabs-example"
-                style={{ marginLeft: "380px",  backgroundColor: "#ffffff"}}
+                style={{ marginLeft: "420px",  backgroundColor: "#ffffff"}}
               >
-                <Tab label="PAUSED ORDERS" value={"1"}></Tab>
-                <Tab label="PROCESS ORDERS" value={"2"}></Tab>
-                <Tab label="FINISHED ORDERS" value={"3"}></Tab>
+                <Tab label="PAUSED ORDERS" value={"1"} sx={{color: "black"}}></Tab>
+                <Tab label="PROCESS ORDERS" value={"2"} sx={{color: "black"}}></Tab>
+                <Tab label="FINISHED ORDERS" value={"3"} sx={{color: "black"}}></Tab>
               </Tabs>
             </Box>
             <Stack className="order-main-content" sx={{}}>
