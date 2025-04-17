@@ -205,7 +205,6 @@ export default function PausedOrders(props: PausedOrdersProps) {
               sx={{
                 background: "orange",
                 color: "white",
-                fontWeight: "bold",
                 textTransform: "capitalize"
               }}
             >
@@ -219,7 +218,6 @@ export default function PausedOrders(props: PausedOrdersProps) {
               sx={{
                 background: "orange",
                 color: "white",
-                fontWeight: "bold",
                 textTransform: "capitalize"
               }}
             >

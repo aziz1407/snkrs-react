@@ -86,7 +86,7 @@ export default function FinishedOrders() {
             <Button
               onClick={() => handlePageChange(currentPage - 1)}
               variant="contained"
-              sx={{ background: "orange", color: "white", textTransform: "capitalize"}}
+              sx={{ background: "orange", color: "white", marginTop: "15px", textTransform: "capitalize"}}
             >
               Back
             </Button>
