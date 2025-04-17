@@ -21,7 +21,6 @@ export default function UserPage() {
         <Stack className={"my-page-frame"}>
           <Stack className={"my-page-left"}>
             <Box display={"flex"} flexDirection={"column"}>
-              <Box className={"menu-name"}>Modify Member Details</Box>
               <Box className={"menu-content"}>
                 <Settings />
               </Box>
@@ -44,35 +43,51 @@ export default function UserPage() {
                     }
                     className={"order-user-avatar"}
                   />
-                  <div className={"order-user-icon-box"}>
-                    <img
-                      src={
-                        authMember?.memberType === MemberType.RESTAURANT
-                          ? "/icons/restaurant.svg"
-                          : "/icons/user-badge.svg"
-                      }
-                    />
-                  </div>
                 </div>
-                <span className={"order-user-name"}>
+                <span className={"order-user-name"} style={{fontFamily: "sans-serif", fontStyle: "bold"}}>
                   {authMember?.memberNick}
                 </span>
-                <span className={"order-user-prof"}>
+                <span className={"order-user-prof"} style={{fontFamily: "sans-serif", fontStyle: "bold"}}>
                   {authMember?.memberType}
                 </span>
-                <span className={"order-user-prof"}>
+                <span className={"order-user-prof"} style={{fontFamily: "sans-serif", fontStyle: "bold"}}>
                   {authMember?.memberAddress
                     ? authMember.memberAddress
                     : "No Address"}
                 </span>
               </Box>
-              <Box className={"user-media-box"}>
-                <FacebookIcon />
-                <InstagramIcon />
-                <TelegramIcon />
-                <YouTubeIcon />
+              <Box className="user-media-box">
+                <a
+                  href="https://facebook.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FacebookIcon style={{ cursor: "pointer" }} />
+                </a>
+                <a
+                  href="https://instagram.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <InstagramIcon style={{ cursor: "pointer" }} />
+                </a>
+                <a
+                  href="https://t.me/your_channel"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <TelegramIcon style={{ cursor: "pointer" }} />
+                </a>
+                <a
+                  href="https://youtube.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <YouTubeIcon style={{ cursor: "pointer" }} />
+                </a>
               </Box>
-              <p className={"user-desc"}>
+
+              <p className={"user-desc"} style={{fontFamily: "sans-serif", fontStyle: "bold"}}>
                 {authMember?.memberDesc
                   ? authMember.memberDesc
                   : "No Descripton"}

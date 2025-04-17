@@ -29,7 +29,7 @@ export default function Basket(props: BasketProps) {
     (a: number, c: CartItem) => a + c.quantity * c.price,
     0
   );
-  const shippingCost: number = itemsPrice < 100 ? 5 : 0;
+  const shippingCost: number = itemsPrice < 200 ? 10 : 0;
   const totalPrice = (itemsPrice + shippingCost).toFixed(1);
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -163,7 +163,7 @@ export default function Basket(props: BasketProps) {
           </Box>
           {cartItems.length !== 0 ? (
             <Box className={"basket-order"}>
-              <span className={"price"}>
+              <span className={"price"} style={{color: "black"}}>
                 Total: ${totalPrice} ({itemsPrice} + {shippingCost})
               </span>
               <Button

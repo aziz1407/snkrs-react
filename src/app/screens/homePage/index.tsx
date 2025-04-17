@@ -13,13 +13,11 @@ import "../../../css/home.css";
 import MemberService from "../../../app/services/MemberService";
 import { Member } from "../../../lib/data/types/member";
 import { Box, useTheme } from "@mui/material";
-import Trending from "./BestSeller";
-import { ProductCollection } from "../../../lib/data/enums/product.enum";
 import BestSeller from "./BestSeller";
 
 /** REDUX SLICE & SELECTOR **/
 const actionDispatch = (dispatch: Dispatch) => ({
-  setPopularDishes: (data: Product[]) => dispatch(setPopularDishes(data)), //slice actions
+  setPopularDishes: (data: Product[]) => dispatch(setPopularDishes(data)), 
   setNewDishes: (data: Product[]) => dispatch(setNewDishes(data)),
   setTopUsers: (data: Member[]) => dispatch(setTopUsers(data)),
 });
@@ -37,7 +35,7 @@ export default function HomePage() {
         page: 1,
         limit: 1,
         order: "productViews",
-        productCollection: ProductCollection.NIKE,
+        // productCollection: ProductCollection.NIKE,
 
       })
       .then((data) => setPopularDishes(data)) //where data gets loaded to store
@@ -48,7 +46,6 @@ export default function HomePage() {
         page: 1,
         limit: 4,
         order: "createdAt",
-        // productCollection: ProductCollection.DISH,
       })
       .then((data) => setNewDishes(data))
       .catch((err) => console.log(err));

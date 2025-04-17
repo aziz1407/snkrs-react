@@ -79,7 +79,7 @@ export default function OrdersPage() {
                 value={value}
                 onChange={handleChange}
                 aria-label="basic-tabs-example"
-                style={{ marginLeft: "50px",  backgroundColor: "#ffffff"}}
+                style={{ marginLeft: "380px",  backgroundColor: "#ffffff"}}
               >
                 <Tab label="PAUSED ORDERS" value={"1"}></Tab>
                 <Tab label="PROCESS ORDERS" value={"2"}></Tab>
@@ -90,99 +90,6 @@ export default function OrdersPage() {
               <PausedOrders setValue={setValue} />
               <ProcessOrders setValue={setValue} />
               <FinishedOrders />
-
-              <Stack className="right-card">
-                <Stack className="right-1">
-                  <div className="image-frame">
-                    <div className="icon-frame">
-                    <div className={"order-user-img"}>
-              <img
-                  src={authMember?.memberImage
-                    ? `${serverApi}/${authMember.memberImage}`
-                    : "/icons/default-user.svg"}
-                  className={"order-user-avatar"}
-                /> 
-                <div className={"order-user-icon-box"}>
-                  <img
-                    src={authMember?.memberType === MemberType.RESTAURANT
-                      ? "/icons/restaurant.svg"
-                      : "/icons/user-badge.svg"}
-                    className={"order-user-prof-img"}
-                  />
-                </div>
-              </div>
-                    </div>
-                  </div>
-                  <span className="name">{authMember?.memberNick}</span>
-                  <Box
-                    sx={{
-                      fontFamily: "comissioner",
-                      fontSize: "18px",
-                      color: "#A1A1A1",
-                    }}
-                  >
-                    {authMember?.memberType}
-                  </Box>
-                  <Box marginTop={"40px"}>
-                    <Divider width="332" height="2" bg="#A1A1A1" />
-                  </Box>
-                  <Stack className="city-desc">
-                    <Box>
-                      <img
-                        src="/icons/location.svg"
-                        style={{ marginRight: "10px" }}
-                      />
-                    </Box>
-                    <span>{authMember?.memberAddress
-                ? authMember.memberAddress
-                : "no address"}</span>
-                  </Stack>
-                </Stack>
-                <Stack className="right-2">
-                  <input
-                    type="text"
-                    placeholder="Card number"
-                    className="input-1"
-                  />
-
-                  <div className="second-column">
-                    <input
-                      type="text"
-                      placeholder="MM/YY"
-                      className="input-2"
-                    />
-
-                    <input
-                      type="text"
-                      placeholder="CVV"
-                      maxLength={3}
-                      pattern="[0-9]*"
-                      className="input-3"
-                    />
-                  </div>
-
-                  <input
-                    type="text"
-                    placeholder="Cardholder name"
-                    className="input-4"
-                  />
-
-                  <div className="cards">
-                    <div>
-                      <img src="/icons/visa-card.svg" alt="" />
-                    </div>
-                    <div>
-                      <img src="/icons/master-card.svg" alt="" />
-                    </div>
-                    <div>
-                      <img src="/icons/paypal-card.svg" alt="" />
-                    </div>
-                    <div>
-                      <img src="/icons/western-card.svg" alt="" />
-                    </div>
-                  </div>
-                </Stack>
-              </Stack>
             </Stack>
           </TabContext>
         </Stack>

@@ -106,7 +106,7 @@ export function Settings() {
       </Box>
       <Box className={"input-frame"}>
         <div className={"long-input"}>
-          <label className={"spec-label"}>Username</label>
+          <label className={"spec-label"}>Username*</label>
           <input
             className={"spec-input mb-nick"}
             type="text"
@@ -119,7 +119,7 @@ export function Settings() {
       </Box>
       <Box className={"input-frame"}>
         <div className={"short-input"}>
-          <label className={"spec-label"}>Phone</label>
+          <label className={"spec-label"}>Phone*</label>
           <input
             className={"spec-input mb-phone"}
             type="text"
@@ -130,7 +130,7 @@ export function Settings() {
           />
         </div>
         <div className={"short-input"}>
-          <label className={"spec-label"}>Address</label>
+          <label className={"spec-label"}>Address*</label>
           <input
             className={"spec-input  mb-address"}
             type="text"
@@ -147,7 +147,7 @@ export function Settings() {
       </Box>
       <Box className={"input-frame"}>
         <div className={"long-input"}>
-          <label className={"spec-label"}>Description</label>
+          <label className={"spec-label"}>Description*</label>
           <textarea
             className={"spec-textarea mb-description"}
             placeholder={

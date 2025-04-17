@@ -69,8 +69,6 @@ export default function Products(props: ProductsProps) {
   const history = useHistory();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
-  const [activeCategory, setActiveCategory] = useState("Sneakers");
-
   useEffect(() => {
     const product = new ProductService();
     product
@@ -137,7 +135,6 @@ export default function Products(props: ProductsProps) {
     }
   };
 
-  // Get color array based on brand
   const getColorsByBrand = (brand: string) => {
     const lowerBrand = brand.toLowerCase();
     if (lowerBrand.includes("nike")) return demoColors.nike;
@@ -193,7 +190,7 @@ export default function Products(props: ProductsProps) {
                   searchProductHandler();
                 }
               }}
-              sx={{ mr: 1, minWidth: "200px" }}
+              sx={{ mr: 1, minWidth: "200px", color: "black"}}
             />
             <IconButton onClick={searchProductHandler} size="small">
               <SearchIcon />
@@ -216,7 +213,10 @@ export default function Products(props: ProductsProps) {
           className="filter-popover"
         >
           <Box className="filter-popover-content">
-            <Box className="filter-header" sx={{ display: "display" }}>
+            <Box
+              className="filter-header"
+              sx={{ display: "flex", width: "200px" }}
+            >
               <Typography variant="h6" sx={{ justifyContent: "flex-end" }}>
                 Filter & Sort
               </Typography>
@@ -227,7 +227,7 @@ export default function Products(props: ProductsProps) {
 
             <Divider />
 
-            <Box className="filter-section">
+            <Box className="filter-section" sx={{ marginLeft: "10px" }}>
               <Typography variant="subtitle1" className="filter-title">
                 Sort By
               </Typography>
@@ -267,26 +267,11 @@ export default function Products(props: ProductsProps) {
 
             <Divider />
 
-            <Box className="filter-section">
+            <Box className="filter-section" sx={{ marginLeft: "10px" }}>
               <Typography variant="subtitle1" className="filter-title">
                 Brand
               </Typography>
               <FormGroup>
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      checked={
-                        productSearch.productCollection ===
-                        ProductCollection.MIX
-                      }
-                      onChange={() =>
-                        searchCollectionHandler(ProductCollection.MIX)
-                      }
-                      size="small"
-                    />
-                  }
-                  label="All Brands"
-                />
                 <FormControlLabel
                   control={
                     <Checkbox
@@ -346,6 +331,21 @@ export default function Products(props: ProductsProps) {
                     />
                   }
                   label="New Balance"
+                />
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={
+                        productSearch.productCollection ===
+                        ProductCollection.MIX
+                      }
+                      onChange={() =>
+                        searchCollectionHandler(ProductCollection.MIX)
+                      }
+                      size="small"
+                    />
+                  }
+                  label="All Brands"
                 />
               </FormGroup>
             </Box>
@@ -437,7 +437,6 @@ export default function Products(props: ProductsProps) {
           )}
         </Box>
 
-        {/* Pagination */}
         <Box className="pagination-container">
           <Pagination
             count={

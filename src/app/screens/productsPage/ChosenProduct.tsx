@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Container, Stack, Box } from "@mui/material";
+import { Container, Box } from "@mui/material";
 import { Swiper, SwiperSlide } from "swiper/react";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import Divider from "../../components/divider";
@@ -23,6 +23,7 @@ import MemberService from "../../../app/services/MemberService";
 import { Member } from "../../../lib/data/types/member";
 import { serverApi } from "../../../lib/config";
 import { CartItem } from "../../../lib/data/types/search";
+
 
 const actionDispatch = (dispatch: Dispatch) => ({
   setRestaurant: (data: Member) => dispatch(setRestaurant(data)),
@@ -52,8 +53,6 @@ export default function ChosenProduct(props: ChosenProductsProps) {
 
   useEffect(() => {
     const product = new ProductService();
-    console.log("productId:", productId);
-
     product
       .getProduct(productId)
       .then((data) => setChosenProduct(data))
@@ -67,73 +66,82 @@ export default function ChosenProduct(props: ChosenProductsProps) {
   }, []);
 
   if (!chosenProduct) return null;
+
   return (
-    <div className={"chosen-product"}>
-      <Box className={"title"}>Product Detail</Box>
-      <Container className={"product-container"}>
-        <Stack className={"chosen-product-slider"}>
-          <Swiper
-            loop={true}
-            spaceBetween={10}
-            navigation={true}
-            modules={[FreeMode, Navigation, Thumbs]}
-            className="swiper-area"
+    <div className="chosen-product">
+      <Box className="title">Product Detail</Box>
+      <Container className="product-wrapper">
+      <Box className="image-section">
+  <Swiper
+    loop={true}
+    spaceBetween={10}
+    navigation={true}
+    modules={[FreeMode, Navigation]}
+    className="custom-swiper"
+  >
+    {chosenProduct?.productImages.map((ele: string, index: number) => {
+      const imagePath = `${serverApi}/${ele}`;
+      return (
+        <SwiperSlide key={index}>
+          <Box
+            component="img"
+            src={imagePath}
+            alt={chosenProduct.productName}
+            sx={{
+              width: '100%',
+              maxHeight: '400px',
+              objectFit: 'cover',
+              borderRadius: '16px',
+              boxShadow: '0 8px 16px rgba(0,0,0,0.1)',
+              transition: 'transform 0.3s ease',
+              '&:hover': {
+                transform: 'scale(1.02)',
+              },
+            }}
+          />
+        </SwiperSlide>
+      );
+    })}
+  </Swiper>
+</Box>
+
+
+        <Box className="info-section">
+          <div className="brand">{restaurant?.memberNick}</div>
+          <div className="name">{chosenProduct?.productName}</div>
+          <div className="category">{chosenProduct?.productCollection}</div>
+
+          <div className="rating-row">
+            <Rating name="rating" value={4.5} precision={0.5} readOnly />
+            <span className="review-count">
+              {chosenProduct.productViews || 0} reviews
+            </span>
+          </div>
+            <div>{chosenProduct.productLeftCount} pairs left</div>
+          <div className="price">${chosenProduct?.productPrice}</div>
+          <Divider height="1" width="100%" bg="#EEEEEE" />
+
+          <Button
+            variant="contained"
+            className="add-to-cart"
+            onClick={(e) => {
+              onAdd({
+                _id: chosenProduct._id,
+                quantity: 1,
+                name: chosenProduct.productName,
+                price: chosenProduct.productPrice,
+                image: chosenProduct.productImages[0],
+              });
+              e.stopPropagation();
+            }}
           >
-            {chosenProduct?.productImages.map((ele: string, index: number) => {
-              const imagePath = `${serverApi}/${ele}`;
-              return (
-                <SwiperSlide key={index}>
-                  <img className="slider-image" src={imagePath} />
-                </SwiperSlide>
-              );
-            })}
-          </Swiper>
-        </Stack>
-        <Stack className={"chosen-product-info"}>
-          <Box className={"info-box"}>
-            <strong className={"product-name"}>
-              {chosenProduct?.productName}
-            </strong>
-            <span className={"resto-name"}>{restaurant?.memberNick}</span>
-            <span className={"resto-name"}>{restaurant?.memberPhone}</span>
-            <Box className={"rating-box"}>
-              <Rating name="half-rating" defaultValue={4.5} precision={0.5} />
-              <div className={"evaluation-box"}>
-                <div className={"product-view"}>
-                  <RemoveRedEyeIcon sx={{ mr: "10px" }} />
-                  <span>{chosenProduct.productViews}</span>
-                </div>
-              </div>
-            </Box>
-            <p className={"product-desc"}>
-              {chosenProduct?.productDesc
-                ? chosenProduct?.productDesc
-                : "No Description"}
-            </p>
-            <Divider height="1" width="100%" bg="#000000" />
-            <div className={"product-price"}>
-              <span>Price:</span>
-              <span>${chosenProduct?.productPrice}</span>
-            </div>
-            <div className={"button-box"}>
-              <Button
-                variant="contained"
-                onClick={(e) => {
-                  onAdd({
-                    _id: chosenProduct._id,
-                    quantity: 1,
-                    name: chosenProduct.productName,
-                    price: chosenProduct.productPrice,
-                    image: chosenProduct.productImages[0]
-                  });
-                  e.stopPropagation();
-                }}
-              >
-                Add To Basket
-              </Button>
-            </div>
-          </Box>
-        </Stack>
+            Add to Cart
+          </Button>
+
+          <div className="delivery-msg">
+            🚚 Free delivery on orders over $200
+          </div>
+        </Box>
       </Container>
     </div>
   );
