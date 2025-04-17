@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import Statistics from "./Statistics";
 import NewArrival from "./NewArrival";
 import Advertisement from "./Advertisement";
-import ActiveUsers from "./ActiveUsers";
 import Events from "./Events";
 import { useDispatch } from "react-redux";
 import { Dispatch } from "@reduxjs/toolkit";
@@ -14,6 +13,7 @@ import MemberService from "../../../app/services/MemberService";
 import { Member } from "../../../lib/data/types/member";
 import { Box, useTheme } from "@mui/material";
 import BestSeller from "./BestSeller";
+import TopUsers from "./TopUsers";
 
 /** REDUX SLICE & SELECTOR **/
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -72,7 +72,7 @@ export default function HomePage() {
       <Advertisement />
       <BestSeller />
       <Statistics />
-      <ActiveUsers />
+      <TopUsers />
       <Events />
     </Box>
   );

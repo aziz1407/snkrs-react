@@ -314,9 +314,8 @@
 
 .basket-frame .all-check-box {
   padding: 8px 12px;
-  background: orange;
+  background: #b6dbed;
   border-radius: 12px;
-  color: white;
   font-weight: 500;
   justify-content: space-between;
 }
@@ -443,7 +442,7 @@
 }
 
 .basket-order button {
-  background-color: #ffa726;
+  background-color: skyblue;
   color: white;
   font-weight: 600;
   padding: 6px 14px;

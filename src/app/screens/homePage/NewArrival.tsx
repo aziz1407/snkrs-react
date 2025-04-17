@@ -185,6 +185,7 @@ export default function NewArrival() {
                           alignItems: "center",
                         }}
                       >
+
                         <Typography
                           className="size"
                           sx={{

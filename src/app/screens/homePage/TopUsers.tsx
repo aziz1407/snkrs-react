@@ -14,7 +14,7 @@ const topUsersRetriever = createSelector(retrieveTopUsers, (topUsers) => ({
   topUsers,
 }));
 
-export default function ActiveUsers() {
+export default function TopUsers() {
   const theme = useTheme();
   const { topUsers } = useSelector(topUsersRetriever);
 
