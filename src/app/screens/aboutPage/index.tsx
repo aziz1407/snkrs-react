@@ -27,7 +27,7 @@ export default function AboutPage() {
       name: "Islam Makhachev",
       role: "Ufc champion",
       image: "/img/islam.webp",
-      text: `I respect hard work, and these guys clearly put their heart into this. It's not just a store — it's a whole culture. When I'm not training, I keep it light, and SNKRS keeps me looking sharp.”`,
+      text: `I respect hard work, and these guys clearly put their heart into this. It's not just a store — it's a whole culture. When I'm not training, I keep it light, and SNKRS keeps me looking sharp.`,
       stars: 5,
     },
     {

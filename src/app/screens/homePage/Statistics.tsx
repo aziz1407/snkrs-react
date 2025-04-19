@@ -34,7 +34,7 @@ const infoItems = [
   },
 ];
 
-export default function Statistics() {
+export default function InfoSection() {
   const scrollingItems = [...infoItems, ...infoItems]; // Duplicate for endless loop
 
   return (

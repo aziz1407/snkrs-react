@@ -12,8 +12,8 @@ export interface AppRootState { //screen-comp-based
 
 /** HOMEPAGE **/
 export interface HomePageState {
-    popularDishes: Product[];
-    newDishes: Product[];
+    bestSeller: Product[];
+    newDrops: Product[];
     topUsers: Member[];
 }
 

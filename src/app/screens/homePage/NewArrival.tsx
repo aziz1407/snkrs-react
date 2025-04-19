@@ -194,7 +194,7 @@ export default function NewArrival() {
                             color: isDark ? "#bbb" : "#757575",
                           }}
                         >
-                          Size: {product.productSize}
+                          Stock: {product.productLeftCount} pairs left
                         </Typography>
 
                         <Typography

@@ -1,11 +1,10 @@
 import React, { useEffect } from "react";
-import Statistics from "./Statistics";
 import NewArrival from "./NewArrival";
 import Advertisement from "./Advertisement";
 import Events from "./Events";
 import { useDispatch } from "react-redux";
 import { Dispatch } from "@reduxjs/toolkit";
-import { setPopularDishes, setNewDishes, setTopUsers } from "./slice";
+import { setBestSeller, setNewDrops, setTopUsers } from "./slice";
 import { Product } from "../../../lib/data/types/product";
 import ProductService from "../../../app/services/ProductService";
 import "../../../css/home.css";
@@ -14,16 +13,17 @@ import { Member } from "../../../lib/data/types/member";
 import { Box, useTheme } from "@mui/material";
 import BestSeller from "./BestSeller";
 import TopUsers from "./TopUsers";
+import InfoSection from "./Statistics";
 
 /** REDUX SLICE & SELECTOR **/
 const actionDispatch = (dispatch: Dispatch) => ({
-  setPopularDishes: (data: Product[]) => dispatch(setPopularDishes(data)), 
-  setNewDishes: (data: Product[]) => dispatch(setNewDishes(data)),
+  setBestSeller: (data: Product[]) => dispatch(setBestSeller(data)), 
+  setNewDrops: (data: Product[]) => dispatch(setNewDrops(data)),
   setTopUsers: (data: Member[]) => dispatch(setTopUsers(data)),
 });
 
 export default function HomePage() {
-  const { setPopularDishes, setNewDishes, setTopUsers } = actionDispatch(
+  const { setBestSeller, setNewDrops, setTopUsers } = actionDispatch(
     useDispatch()
   );
 
@@ -38,7 +38,7 @@ export default function HomePage() {
         // productCollection: ProductCollection.NIKE,
 
       })
-      .then((data) => setPopularDishes(data)) //where data gets loaded to store
+      .then((data) => setBestSeller(data)) //where data gets loaded to store
       .catch((err) => console.log(err));
 
     product
@@ -47,7 +47,7 @@ export default function HomePage() {
         limit: 4,
         order: "createdAt",
       })
-      .then((data) => setNewDishes(data))
+      .then((data) => setNewDrops(data))
       .catch((err) => console.log(err));
 
     const member = new MemberService();
@@ -71,7 +71,7 @@ export default function HomePage() {
       <NewArrival />
       <Advertisement />
       <BestSeller />
-      <Statistics />
+      <InfoSection />
       <TopUsers />
       <Events />
     </Box>

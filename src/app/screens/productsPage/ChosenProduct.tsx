@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { Container, Box } from "@mui/material";
 import { Swiper, SwiperSlide } from "swiper/react";
-import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import Divider from "../../components/divider";
 import Button from "@mui/material/Button";
 import Rating from "@mui/material/Rating";
@@ -9,14 +8,14 @@ import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
-import { FreeMode, Navigation, Thumbs } from "swiper";
+import { FreeMode, Navigation } from "swiper";
 
 import { Product } from "../../../lib/data/types/product";
 import { Dispatch } from "@reduxjs/toolkit";
 import { useSelector, useDispatch } from "react-redux";
 import { createSelector } from "@reduxjs/toolkit";
-import { setChosenProduct, setProducts, setRestaurant } from "./slice";
-import { retrieveChosenProduct, retrieveRestaurant } from "./selector";
+import { setChosenProduct, setProducts, setAdmin } from "./slice";
+import { retrieveChosenProduct, retrieveAdmin } from "./selector";
 import { useParams } from "react-router-dom";
 import ProductService from "../../../app/services/ProductService";
 import MemberService from "../../../app/services/MemberService";
@@ -26,7 +25,7 @@ import { CartItem } from "../../../lib/data/types/search";
 
 
 const actionDispatch = (dispatch: Dispatch) => ({
-  setRestaurant: (data: Member) => dispatch(setRestaurant(data)),
+  setAdmin: (data: Member) => dispatch(setAdmin(data)),
   setChosenProduct: (data: Product) => dispatch(setChosenProduct(data)),
 });
 
@@ -35,9 +34,9 @@ const chosenProductRetriever = createSelector(
   (chosenProduct) => ({ chosenProduct })
 );
 
-const restaurantRetriever = createSelector(
-  retrieveRestaurant,
-  (restaurant) => ({ restaurant })
+const adminRetriever = createSelector(
+  retrieveAdmin,
+  (admin) => ({ admin })
 );
 
 interface ChosenProductsProps {
@@ -47,9 +46,9 @@ interface ChosenProductsProps {
 export default function ChosenProduct(props: ChosenProductsProps) {
   const { onAdd } = props;
   const { productId } = useParams<{ productId: string }>();
-  const { setRestaurant, setChosenProduct } = actionDispatch(useDispatch());
+  const { setAdmin, setChosenProduct } = actionDispatch(useDispatch());
   const { chosenProduct } = useSelector(chosenProductRetriever);
-  const { restaurant } = useSelector(restaurantRetriever);
+  const { admin } = useSelector(adminRetriever);
 
   useEffect(() => {
     const product = new ProductService();
@@ -61,7 +60,7 @@ export default function ChosenProduct(props: ChosenProductsProps) {
     const member = new MemberService();
     member
       .getRestaurant()
-      .then((data) => setRestaurant(data))
+      .then((data) => setAdmin(data))
       .catch((err) => console.log(err));
   }, []);
 
@@ -107,7 +106,7 @@ export default function ChosenProduct(props: ChosenProductsProps) {
 
 
         <Box className="info-section">
-          <div className="brand">{restaurant?.memberNick}</div>
+          <div className="brand">{admin?.memberNick}</div>
           <div className="name">{chosenProduct?.productName}</div>
           <div className="category">{chosenProduct?.productCollection}</div>
 

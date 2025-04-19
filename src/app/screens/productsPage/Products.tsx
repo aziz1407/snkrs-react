@@ -13,10 +13,8 @@ import {
 import Button from "@mui/material/Button";
 import SearchIcon from "@mui/icons-material/Search";
 import FilterListIcon from "@mui/icons-material/FilterList";
-import SortIcon from "@mui/icons-material/Sort";
 import Pagination from "@mui/material/Pagination";
 import Typography from "@mui/material/Typography";
-import CircleIcon from "@mui/icons-material/Circle";
 import CloseIcon from "@mui/icons-material/Close";
 import IconButton from "@mui/material/IconButton";
 
@@ -57,7 +55,6 @@ export default function Products(props: ProductsProps) {
     search: "",
   });
 
-  // Demo colors for products - in real app these would come from the API
   const demoColors = {
     nike: ["#FF0000", "#000000", "#FFFFFF", "#0000FF", "#00FF00"],
     adidas: ["#000000", "#FFFFFF", "#0000FF", "#FF0000", "#FFFF00"],
