@@ -187,7 +187,7 @@ export default function Products(props: ProductsProps) {
                   searchProductHandler();
                 }
               }}
-              sx={{ mr: 1, minWidth: "200px", color: "black"}}
+              sx={{ mr: 1, minWidth: "200px", color: "black" }}
             />
             <IconButton onClick={searchProductHandler} size="small">
               <SearchIcon />
@@ -370,21 +370,35 @@ export default function Products(props: ProductsProps) {
                       alt={product.productName}
                       className="product-image"
                     />
-                    <Button
-                      className="add-to-cart-btn"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        onAdd({
-                          _id: product._id,
-                          quantity: 1,
-                          name: product.productName,
-                          price: product.productPrice,
-                          image: product.productImages[0],
-                        });
-                      }}
-                    >
-                      Add to Cart
-                    </Button>
+                    {product.productLeftCount > 0 ? (
+                      <Button
+                        className="add-to-cart-btn"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          onAdd({
+                            _id: product._id,
+                            quantity: 1,
+                            name: product.productName,
+                            price: product.productPrice,
+                            image: product.productImages[0],
+                          });
+                        }}
+                      >
+                        Add to Cart
+                      </Button>
+                    ) : (
+                      <Button
+                        className="out-of-stock-btn"
+                        disabled
+                        sx={{
+                          backgroundColor: "#ccc",
+                          color: "#fff",
+                          cursor: "not-allowed",
+                        }}
+                      >
+                        Out of Stock
+                      </Button>
+                    )}
                   </Box>
 
                   <Box className="product-info">
@@ -445,7 +459,7 @@ export default function Products(props: ProductsProps) {
             onChange={PaginationHandler}
             color="primary"
             shape="rounded"
-            sx={{background: "grey", borderRadius: "3px"}}
+            sx={{ background: "grey", borderRadius: "3px" }}
           />
         </Box>
       </Container>
