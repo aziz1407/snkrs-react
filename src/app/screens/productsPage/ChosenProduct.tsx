@@ -130,7 +130,7 @@ export default function ChosenProduct(props: ChosenProductsProps) {
               e.stopPropagation();
             }}
           >
-            Add to Cart
+            Shop Now
           </Button>
 
           <div className="delivery-msg">
