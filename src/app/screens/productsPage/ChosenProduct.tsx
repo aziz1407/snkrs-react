@@ -22,7 +22,7 @@ import MemberService from "../../../app/services/MemberService";
 import { Member } from "../../../lib/data/types/member";
 import { serverApi } from "../../../lib/config";
 import { CartItem } from "../../../lib/data/types/search";
-
+import NewArrival from "../homePage/NewArrival";
 
 const actionDispatch = (dispatch: Dispatch) => ({
   setAdmin: (data: Member) => dispatch(setAdmin(data)),
@@ -34,10 +34,7 @@ const chosenProductRetriever = createSelector(
   (chosenProduct) => ({ chosenProduct })
 );
 
-const adminRetriever = createSelector(
-  retrieveAdmin,
-  (admin) => ({ admin })
-);
+const adminRetriever = createSelector(retrieveAdmin, (admin) => ({ admin }));
 
 interface ChosenProductsProps {
   onAdd: (item: CartItem) => void;
@@ -70,40 +67,39 @@ export default function ChosenProduct(props: ChosenProductsProps) {
     <div className="chosen-product">
       <Box className="title">Product Detail</Box>
       <Container className="product-wrapper">
-      <Box className="image-section">
-  <Swiper
-    loop={true}
-    spaceBetween={10}
-    navigation={true}
-    modules={[FreeMode, Navigation]}
-    className="custom-swiper"
-  >
-    {chosenProduct?.productImages.map((ele: string, index: number) => {
-      const imagePath = `${serverApi}/${ele}`;
-      return (
-        <SwiperSlide key={index}>
-          <Box
-            component="img"
-            src={imagePath}
-            alt={chosenProduct.productName}
-            sx={{
-              width: '100%',
-              maxHeight: '400px',
-              objectFit: 'cover',
-              borderRadius: '16px',
-              boxShadow: '0 8px 16px rgba(0,0,0,0.1)',
-              transition: 'transform 0.3s ease',
-              '&:hover': {
-                transform: 'scale(1.02)',
-              },
-            }}
-          />
-        </SwiperSlide>
-      );
-    })}
-  </Swiper>
-</Box>
-
+        <Box className="image-section">
+          <Swiper
+            loop={true}
+            spaceBetween={10}
+            navigation={true}
+            modules={[FreeMode, Navigation]}
+            className="custom-swiper"
+          >
+            {chosenProduct?.productImages.map((ele: string, index: number) => {
+              const imagePath = `${serverApi}/${ele}`;
+              return (
+                <SwiperSlide key={index}>
+                  <Box
+                    component="img"
+                    src={imagePath}
+                    alt={chosenProduct.productName}
+                    sx={{
+                      width: "100%",
+                      maxHeight: "400px",
+                      objectFit: "cover",
+                      borderRadius: "16px",
+                      boxShadow: "0 8px 16px rgba(0,0,0,0.1)",
+                      transition: "transform 0.3s ease",
+                      "&:hover": {
+                        transform: "scale(1.02)",
+                      },
+                    }}
+                  />
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
+        </Box>
 
         <Box className="info-section">
           <div className="brand">{admin?.memberNick}</div>
@@ -116,7 +112,7 @@ export default function ChosenProduct(props: ChosenProductsProps) {
               {chosenProduct.productViews || 0} reviews
             </span>
           </div>
-            <div>{chosenProduct.productLeftCount} pairs left</div>
+          <div>{chosenProduct.productLeftCount} pairs left</div>
           <div className="price">${chosenProduct?.productPrice}</div>
           <Divider height="1" width="100%" bg="#EEEEEE" />
 

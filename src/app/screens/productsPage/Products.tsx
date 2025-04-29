@@ -56,7 +56,7 @@ export default function Products(props: ProductsProps) {
   });
 
   const demoColors = {
-    nike: ["#FF0000", "#000000", "#FFFFFF", "#0000FF", "#00FF00"],
+    nike: ["#FFFFFF", "#FF0000", "#000000", "#0000FF", "#00FF00"],
     adidas: ["#000000", "#FFFFFF", "#0000FF", "#FF0000", "#FFFF00"],
     puma: ["#000000", "#FFFFFF", "#808080", "#FFA500", "#800080"],
     new_balance: ["#000000", "#FFFFFF", "#A52A2A", "#008000", "#FFC0CB"],
@@ -387,15 +387,7 @@ export default function Products(props: ProductsProps) {
                         Add to Cart
                       </Button>
                     ) : (
-                      <Button
-                        className="out-of-stock-btn"
-                        disabled
-                        sx={{
-                          backgroundColor: "#ccc",
-                          color: "#fff",
-                          cursor: "not-allowed",
-                        }}
-                      >
+                      <Button className="cart-btn out-of-stock-btn" disabled>
                         Out of Stock
                       </Button>
                     )}

@@ -1,279 +1,143 @@
-import React from "react";
-import {
-  Box,
-  Container,
-  Stack,
-  Card,
-  CardContent,
-  CardMedia,
-  Typography,
-} from "@mui/material";
-import VisibilityIcon from "@mui/icons-material/Visibility";
+import React, { useRef } from "react";
 import { useSelector } from "react-redux";
 import { createSelector } from "reselect";
-import { retrieveNewDishes } from "./selector";
+import { retreiveNewDrops } from "./selector";
 import { Product } from "../../../lib/data/types/product";
 import { serverApi } from "../../../lib/config";
 import { useHistory } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
 import StarIcon from "@mui/icons-material/Star";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
-const newDishesRetriever = createSelector(retrieveNewDishes, (newDishes) => ({
-  newDishes,
+// Select new dishes from the Redux store
+const newDropsRetriever = createSelector(retreiveNewDrops, (newDrops) => ({
+  newDrops,
 }));
 
-export default function NewArrival() {
+const NewArrival: React.FC = () => {
   const theme = useTheme();
   const isDark = theme.palette.mode === "dark";
-  const { newDishes } = useSelector(newDishesRetriever);
+  const { newDrops } = useSelector(newDropsRetriever);
   const history = useHistory();
+  const swiperRef = useRef<HTMLDivElement>(null);
 
-  const handleCardClick = (productId: string) => {
+  const handleCardClick = (productId: string): void => {
     history.push(`/products/${productId}`);
   };
 
+  const handleSeeAllClick = (): void => {
+    history.push("/products");
+  };
+
+  const handleNext = (): void => {
+    if (swiperRef.current) {
+      swiperRef.current.scrollBy({ left: 280, behavior: 'smooth' });
+    }
+  };
+
+  const handlePrev = (): void => {
+    if (swiperRef.current) {
+      swiperRef.current.scrollBy({ left: -280, behavior: 'smooth' });
+    }
+  };
+
+  const renderPaginationDots = (): JSX.Element => {
+    // Assuming we want to show 5 pagination dots
+    return (
+      <div className="pagination-dots">
+        {[1, 2, 3, 4, 5].map((dot, index) => (
+          <span
+            key={index}
+            className={`pagination-dot ${index === 4 ? "active" : ""}`}
+          ></span>
+        ))}
+      </div>
+    );
+  };
+
   return (
-    <Stack
-      className="new-products-frame"
-      sx={{
-        width: "100%",
-        display: "flex",
-        background: theme.palette.background.default,
-        paddingY: 8,
-        alignItems: "center",
-      }}
-    >
-      <Container maxWidth="xl">
-        <Stack
-          className="main"
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <Box
-            className="category-title"
-            sx={{
-              fontFamily: "sans-serif",
-              fontSize: 36,
-              fontWeight: 700,
-              lineHeight: "43px",
-              color: theme.palette.text.primary,
-              mb: 4,
-            }}
-          >
-            New Drops
-          </Box>
-          <Stack
-            className="cards-frame"
-            direction="row"
-            spacing={3}
-            flexWrap="wrap"
-            justifyContent="center"
-          >
-            {newDishes.length !== 0 ? (
-              newDishes.map((product: Product) => {
+    <div className={`new-products-frame ${isDark ? "dark-theme" : ""}`}>
+      <div className="container">
+        <div className="main">
+          <div className="header-container">
+            <div className="category-title">
+              New Drops
+            </div>
+            <div className="navigation-container">
+              <button className="see-all-btn" onClick={handleSeeAllClick}>
+                See All
+                <ArrowForwardIcon className="arrow-icon" />
+              </button>
+              <div className="arrow-buttons">
+                <button className="arrow-btn prev" onClick={handlePrev}>
+                  <ArrowBackIcon />
+                </button>
+                <button className="arrow-btn next" onClick={handleNext}>
+                  <ArrowForwardIcon />
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div className="cards-frame" ref={swiperRef}>
+            {newDrops.length !== 0 ? (
+              newDrops.map((product: Product) => {
                 const imagePath = `${serverApi}/${product.productImages[0]}`;
                 return (
-                  <Card
+                  <div
                     key={product._id}
-                    variant="outlined"
                     className="card"
-                    sx={{
-                      borderRadius: 4,
-                      boxShadow: isDark ? 4 : 2,
-                      transition: "transform 0.3s ease, box-shadow 0.3s ease",
-                      backgroundColor: isDark ? "#1e1e1e" : "#ffffff",
-                      color: isDark ? "#ffffff" : "#000000",
-                      display: "flex",
-                      flexDirection: "column",
-                      justifyContent: "space-between",
-                      height: "auto",
-                      minHeight: "450px",
-                      maxHeight: "500px",
-                      "&:hover": {
-                        transform: "scale(1.03)",
-                        boxShadow: 6,
-                      },
-                    }}
                     onClick={() => handleCardClick(product._id)}
                   >
-                    <Box
-                      className="product-sale"
-                      sx={{
-                        position: "absolute",
-                        top: 10,
-                        left: 10,
-                        zIndex: 10,
-                        backgroundColor: "orange",
-                        color: "#fff",
-                        paddingX: 1.5,
-                        paddingY: 0.5,
-                        borderRadius: 5,
-                        fontSize: 12,
-                        fontWeight: 600,
-                      }}
-                    >
+                    <div className="product-sale">
                       {product.productSize}
-                    </Box>
-                    <CardMedia
-                      component="img"
-                      image={imagePath}
-                      alt={product.productName}
-                      sx={{
-                        height: "350px",
-                        objectFit: "cover",
-                        transition: "transform 0.3s ease",
-                        "&:hover": {
-                          transform: "scale(1.02)",
-                        },
-                      }}
-                    />
-                    <CardContent
-                      className="product-detail"
-                      sx={{
-                        padding: "14px 16px",
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "flex-start",
-                        justifyContent: "flex-start",
-                        backgroundColor: isDark ? "#111" : "#fff",
-                        borderTop: `1px solid ${isDark ? "#333" : "#f0f0f0"}`,
-                        gap: "6px",
-                        flexShrink: 0,
-                      }}
-                    >
-                      <Typography
-                        className="collection-label"
-                        sx={{
-                          fontSize: "11px",
-                          fontWeight: 500,
-                          textTransform: "uppercase",
-                          letterSpacing: "0.5px",
-                          color: isDark ? "#888" : "#757575",
-                        }}
-                      ></Typography>
-
-                      <Typography
-                        className="title"
-                        sx={{
-                          width: "100%",
-                          fontSize: "15px",
-                          fontWeight: 700,
-                          color: isDark ? "#fff" : "#111",
-                          margin: 0,
-                          lineHeight: 1.3,
-                          maxHeight: "40px",
-                          overflow: "hidden",
-                          textOverflow: "ellipsis",
-                          display: "-webkit-box",
-                          WebkitLineClamp: 2,
-                          WebkitBoxOrient: "vertical",
-                        }}
-                      >
+                    </div>
+                    <div className="card-media">
+                      <img src={imagePath} alt={product.productName} />
+                    </div>
+                    <div className="product-detail">
+                      <div className="title">
                         {product.productName}
-                      </Typography>
+                      </div>
 
-                      <Box
-                        className="size-price-container"
-                        sx={{
-                          width: "100%",
-                          display: "flex",
-                          flexDirection: "row",
-                          justifyContent: "space-between",
-                          alignItems: "center",
-                        }}
-                      >
-
-                        <Typography
-                          className="size"
-                          sx={{
-                            fontSize: "13px",
-                            fontWeight: 500,
-                            color: isDark ? "#bbb" : "#757575",
-                          }}
-                        >
+                      <div className="size-price-container">
+                        <div className="size">
                           Stock: {product.productLeftCount} pairs left
-                        </Typography>
-
-                        <Typography
-                          className="price"
-                          sx={{
-                            fontSize: "16px",
-                            fontWeight: 700,
-                            color: isDark ? "#ff4d4d" : "#e63946",
-                            margin: 0,
-                          }}
-                        >
+                        </div>
+                        <div className="price">
                           ${product.productPrice}
-                        </Typography>
-                      </Box>
+                        </div>
+                      </div>
 
-                      <Box
-                        className="rating"
-                        sx={{
-                          display: "flex",
-                          alignItems: "center",
-                          gap: "4px",
-                        }}
-                      >
+                      <div className="rating">
                         {[1, 2, 3, 4, 5].map((star) => (
-                          <StarIcon
-                            key={star}
-                            sx={{
-                              fontSize: "16px",
-                              color: "#FFC107", 
-                            }}
-                          />
+                          <StarIcon key={star} className="star-icon" />
                         ))}
-                        <Typography
-                          sx={{
-                            fontSize: "12px",
-                            fontWeight: 500,
-                            color: isDark ? "#bbb" : "#757575",
-                            marginLeft: "4px",
-                          }}
-                        >
-                          (5.0)
-                        </Typography>
-                      </Box>
+                        <span className="rating-count">(5.0)</span>
+                      </div>
 
-                      <Box
-                        className="views"
-                        sx={{
-                          display: "flex",
-                          alignItems: "center",
-                          fontSize: "12px",
-                          fontWeight: 400,
-                          color: isDark ? "#888" : "#9e9e9e",
-                        }}
-                      >
-                        <VisibilityIcon
-                          sx={{ fontSize: "14px", marginRight: "4px" }}
-                        />
+                      <div className="views">
+                        <VisibilityIcon className="view-icon" />
                         {product.productViews} views
-                      </Box>
-                    </CardContent>
-                  </Card>
+                      </div>
+                    </div>
+                  </div>
                 );
               })
             ) : (
-              <Box
-                className="no-data"
-                sx={{
-                  fontSize: "1rem",
-                  color: theme.palette.text.secondary,
-                  textAlign: "center",
-                  marginTop: 3,
-                }}
-              >
+              <div className="no-data">
                 New products are not available!
-              </Box>
+              </div>
             )}
-          </Stack>
-        </Stack>
-      </Container>
-    </Stack>
+          </div>
+          
+          {renderPaginationDots()}
+        </div>
+      </div>
+    </div>
   );
-}
+};
+
+export default NewArrival;

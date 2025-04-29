@@ -17,12 +17,9 @@ export default function Events() {
   const controls = useAnimation();
   const wrapperRef = useRef<HTMLDivElement>(null);
   const theme = useTheme();
-  
 
   useEffect(() => {
-    if (!wrapperRef.current) return;
-  
-    const interval = setInterval(() => {
+    const startAnimationLoop = () => {
       controls.start({
         x: "-25%",
         transition: { duration: 1.5, ease: "easeInOut" },
@@ -32,20 +29,29 @@ export default function Events() {
           transition: { duration: 1.5, ease: "easeInOut" },
         });
       });
-    }, 10000);
-  
-    return () => clearInterval(interval);
+    };
+
+    // Ensure wrapper is mounted first
+    if (wrapperRef.current) {
+      const interval = setInterval(startAnimationLoop, 10000);
+      return () => clearInterval(interval);
+    }
   }, [controls]);
 
   return (
-    <Box className="events-section" sx={{ backgroundColor: theme.palette.background.default }}>
-      <h2 className="events-title" style={{fontStyle: "sans-serif", marginBottom: "50px"}}>Explore More</h2>
+    <Box
+      className="events-section"
+      sx={{ backgroundColor: theme.palette.background.default }}
+    >
+      <h2
+        className="events-title"
+        style={{ fontStyle: "sans-serif", marginBottom: "50px" }}
+      >
+        Explore More
+      </h2>
 
       <motion.div ref={wrapperRef} className="carousel-outer">
-        <motion.div
-          className="event-cards"
-          animate={controls}
-        >
+        <motion.div className="event-cards" animate={controls}>
           {eventData.map((event, index) => (
             <motion.div
               key={`${event.id}-${index}`}

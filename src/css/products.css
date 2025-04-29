@@ -169,22 +169,34 @@
   text-align: left;
 }
 
-.products-page .add-to-cart-btn {
-  position: absolute;
-  bottom: 10px;
-  left: 10px;
+.add-to-cart-btn {
+  width: 100%;
+  padding: 10px 0;
+  border-radius: 8px;
+  background-color: #007BFF; /* sky blue button */
   color: white;
   font-weight: bold;
-  padding: 8px 16px;
-  border-radius: 25px;
-  border: none;
+  text-transform: uppercase;
+  transition: background-color 0.3s, transform 0.3s;
+  font-size: 14px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  border: none;
 }
 
-.products-page .add-to-cart-btn:hover {
+.add-to-cart-btn:hover {
   background-color: orange;
+  transform: translateY(-2px);
 }
+
+.cart-btn.out-of-stock-btn {
+  background-color: #cccccc;
+  color: #ffffff;
+  opacity: 0.7;
+  cursor: not-allowed;
+  pointer-events: none;
+  transform: none; /* no hover effect */
+}
+
 
 .products-page .add-to-cart-btn:focus {
   outline: none;
@@ -345,10 +357,10 @@
   display: flex;
   flex-direction: row;
   gap: 40px;
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
   background: #ffffff;
-  border-radius: 16px;
+  border-radius: 20px;
   padding: 40px;
   box-shadow: 0 16px 48px rgba(0, 0, 0, 0.08);
 }
@@ -358,39 +370,6 @@
   border-radius: 16px;
   overflow: hidden;
   background: #f2f2f2;
-}
-
-.custom-swiper {
-  max-width: 500px;
-  border-radius: 20px;
-  overflow: hidden;
-
-  .swiper-button-next,
-  .swiper-button-prev {
-    color: orange;
-    background-color: rgba(255, 255, 255, 0.8);
-    border-radius: 50%;
-    width: 36px;
-    height: 36px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    transition: all 0.2s ease;
-
-    &::after {
-      font-size: 18px;
-      font-weight: bold;
-    }
-
-    &:hover {
-      transform: scale(1.1);
-      background-color: #ffffff;
-    }
-  }
-
-  .swiper-slide {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
 }
 
 .products-page .chosen-product .product-image {
@@ -468,4 +447,41 @@
   margin-top: 12px;
   font-size: 14px;
   color: #666;
+}
+
+/* === Swiper Custom Styling === */
+.custom-swiper {
+  max-width: 500px;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+}
+
+.custom-swiper .swiper-button-next,
+.custom-swiper .swiper-button-prev {
+  color: orange;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+}
+
+.custom-swiper .swiper-button-next::after,
+.custom-swiper .swiper-button-prev::after {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.custom-swiper .swiper-button-next:hover,
+.custom-swiper .swiper-button-prev:hover {
+  transform: scale(1.1);
+  background-color: #ffffff;
+}
+
+.custom-swiper .swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
