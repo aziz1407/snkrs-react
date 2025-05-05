@@ -44,7 +44,7 @@ export default function HomePage() {
     product
       .getProducts({
         page: 1,
-        limit: 8,
+        limit: 10,
         order: "createdAt",
       })
       .then((data) => setNewDrops(data))
