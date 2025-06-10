@@ -8,6 +8,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { Provider } from "react-redux";
 import ContextProvider from "./app/context/ContextProvider";
 import ThemeModeProvider from "./app/context/ThemeModeContext"; 
+import { SocketProvider } from "./app/context/SocketContext";
 
 const container = document.getElementById("root")!;
 const root = createRoot(container);
@@ -17,9 +18,11 @@ root.render(
     <Provider store={store}>
       <ThemeModeProvider> 
         <ContextProvider>
+          <SocketProvider>
           <Router>
             <App />
           </Router>
+          </SocketProvider>
         </ContextProvider>
       </ThemeModeProvider>
     </Provider>

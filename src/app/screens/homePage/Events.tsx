@@ -26,7 +26,7 @@ const eventData = [
     id: 4,
     img: "/img/event3.png",
     title: "Brand Collab",
-    desc: "Nike x Off-White – now in store.",
+    desc: "Nike x Off-White - now in store.",
   },
   {
     id: 5,
@@ -39,8 +39,8 @@ const eventData = [
 export default function Events() {
   const controls = useAnimation();
   const wrapperRef = useRef(null);
-  const theme = useTheme(); // Access the current theme
-  const history = useHistory(); // Initialize useHistory hook
+  const theme = useTheme(); 
+  const history = useHistory(); 
 
   useEffect(() => {
     const startAnimationLoop = () => {
@@ -70,7 +70,7 @@ export default function Events() {
   return (
     <div className="events-section">
       <div className="events-header">
-        <h2>Explore More</h2>
+        <h2 className='event-title'>Explore More</h2>
       </div>
 
       <motion.div ref={wrapperRef} className="carousel-container">
