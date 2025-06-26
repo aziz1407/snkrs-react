@@ -70,7 +70,7 @@ export default function Events() {
   return (
     <div className="events-section">
       <div className="events-header">
-        <h2 className='event-title'>Explore More</h2>
+        <h2 className='event-title' style={{color: "#333"}}>Explore More</h2>
       </div>
 
       <motion.div ref={wrapperRef} className="carousel-container">
