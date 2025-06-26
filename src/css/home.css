@@ -770,6 +770,10 @@
   letter-spacing: -0.5px;
 }
 
+.event-title {
+  color: black !important;
+}
+
 
 .homepage .carousel-container {
   position: relative;
