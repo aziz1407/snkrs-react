@@ -770,9 +770,14 @@
   letter-spacing: -0.5px;
 }
 
-.event-title {
+ .event-title {
   color: black !important;
+  -webkit-text-fill-color: black !important;
+  background: none !important;
+  background-clip: initial !important;
+  -webkit-background-clip: initial !important;
 }
+
 
 
 .homepage .carousel-container {
